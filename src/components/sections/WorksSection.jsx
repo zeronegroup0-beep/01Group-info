@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLang } from '../../context/LanguageContext';
 import { Link } from 'react-router-dom';
+import ImageLightbox from '../ui/ImageLightbox';
 
 export default function WorksSection({ lang, isEnglish, language }) {
   const langContext = useLang();
@@ -11,8 +12,42 @@ export default function WorksSection({ lang, isEnglish, language }) {
   
   const [activeModal, setActiveModal] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [fullscreenImage, setFullscreenImage] = useState(null);
   const scrollContainerRef = useRef(null);
   const slideRefs = useRef([]);
+  const thumbnailsContainerRef = useRef(null);
+  const thumbnailRefs = useRef([]);
+
+  // Auto-scroll thumbnails track when active image changes
+  useEffect(() => {
+    const container = thumbnailsContainerRef.current;
+    const activeThumb = thumbnailRefs.current[activeImageIndex];
+    if (container && activeThumb) {
+      const containerRect = container.getBoundingClientRect();
+      const thumbRect = activeThumb.getBoundingClientRect();
+      const offset = (thumbRect.left + thumbRect.width / 2) - (containerRect.left + containerRect.width / 2);
+      container.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+  }, [activeImageIndex, activeModal]);
+
+  // Lock background page scroll when modal is open
+  useEffect(() => {
+    if (activeModal !== null) {
+      const originalBodyOverflow = document.body.style.overflow;
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+      const originalBodyOverscroll = document.body.style.overscrollBehavior;
+
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overscrollBehavior = 'none';
+
+      return () => {
+        document.body.style.overflow = originalBodyOverflow;
+        document.documentElement.style.overflow = originalHtmlOverflow;
+        document.body.style.overscrollBehavior = originalBodyOverscroll;
+      };
+    }
+  }, [activeModal]);
 
 
   // Translation Dictionary
@@ -46,25 +81,54 @@ export default function WorksSection({ lang, isEnglish, language }) {
   const projects = [
     { 
       id: 1, 
-      title: { ar: "اسم المشروع الأول", en: "Digital Platform Project" }, 
-      subtitle: { ar: "تصميم وتطوير منصة رقمية", en: "UI/UX & Platform Development" }, 
+      liveUrl: 'https://01group-restaurant.ososghazaly72.workers.dev/',
+      title: { ar: "منصة مطعم الشاورما الدمشقية", en: "01Group Restaurant | Al-Demashqi" }, 
+      subtitle: { ar: "منظومة مطاعم سحابية وقائمة طلبات ذكية متكاملة", en: "Cloud Restaurant & Smart Ordering System" }, 
       desc: { 
-        ar: "وصف مختصر يوضح الفكرة من المشروع والحلول البرمجية أو التصميمية التي تم تقديمها لتحقيق أهداف العميل.", 
-        en: "A concise overview highlighting the project concept and custom digital solutions built to drive client objectives." 
+        ar: "منصة ويب ومطاعم سحابية متطورة تتيح للعملاء تصفح قائمة الطعام بمرونة فائقة، تخصيص الوجبات، وإرسال الطلبات مباشرة بنقرة واحدة عبر الواتساب للمطبخ مع حساب تلقائي لرسوم التوصيل والضريبة.", 
+        en: "A modern cloud restaurant ordering platform featuring real-time menu browsing, meal customization, dynamic cart calculations, and 1-click WhatsApp order dispatching with automated delivery fees." 
       },
       value: {
-        ar: "تقديم حلول برمجية متكاملة تضمن سرعة الأداء، تجربة استخدام سلسة، ومعدل تحويل أعلى للزوار إلى عملاء دائمين.",
-        en: "Delivering end-to-end software solutions ensuring high speed, seamless UX, and higher visitor-to-client conversion rates."
+        ar: "الفئة المستهدفة: عشاق الأكل الشامي والمطاعم الساعية للاستقلال الرقمي. القيمة المحققة: توفير عمولات تطبيقات التوصيل بنسبة 100%، رفع المبيعات المباشرة بأكثر من 40%، وتسريع تجربة الطلب في أقل من دقيقة.",
+        en: "Target Audience: Food enthusiasts & dining brands scaling direct channels. Delivered Value: Eliminates aggregator fees, boosts direct sales by 40%+, and slashes ordering time to under 60 seconds."
       },
       features: {
-        ar: ["تصميم متجاوب بالكامل مع جميع الأجهزة", "أداء فائق السرعة وبنية تحتية مؤمنة", "لوحة تحكم مرنة وسهلة الإدارة"],
-        en: ["Fully responsive UI across all screen sizes", "High performance with secure architecture", "Flexible and intuitive admin control panel"]
+        ar: [
+          "منيو رقمي حي مع فلترة سريعة (شاورما، فتات ملوكي، بيتزا كرسبي)",
+          "سلة طلبات تفاعلية ذكية لحساب الإجمالي والضريبة ورسوم التوصيل لحظياً",
+          "تكامل فوري ومباشر مع الواتساب لإرسال الفاتورة والعنوان بنقرة واحدة",
+          "نظام حجز ترابيزات فوري واختيار عدد الضيوف والفرع أونلاين",
+          "تصميم متجاوب بالكامل لتجربة تصفح وطلب سلسة تحاكي تطبيقات الموبايل"
+        ],
+        en: [
+          "Live interactive menu with real-time category filtering",
+          "Smart dynamic cart calculating subtotals, tax, and delivery instantly",
+          "Seamless WhatsApp order dispatching with formatted receipts and customer location",
+          "Instant online table reservation system with guest and branch selection",
+          "100% responsive mobile-first UI delivering a native app feel"
+        ]
       },
       images: [
-        { ar: "معاينة رئيسية - لوحة التحكم", en: "Main Preview - Admin Dashboard" },
-        { ar: "معاينة ثانية - صفحة المنتجات", en: "Second Preview - Products Page" },
-        { ar: "معاينة ثالثة - واجهة الجوال", en: "Third Preview - Mobile View" },
-        { ar: "معاينة رابعة - إحصائيات المبيعات", en: "Fourth Preview - Sales Analytics" }
+        { 
+          src: "/projects/restaurant/hero.jpg",
+          ar: "الواجهة الرئيسية", 
+          en: "Home Page" 
+        },
+        { 
+          src: "/projects/restaurant/menu.jpg",
+          ar: "منيو وأسعار الأصناف", 
+          en: "Menu & Pricing" 
+        },
+        { 
+          src: "/projects/restaurant/cart.jpg",
+          ar: "احجز ترابيزتك أونلاين", 
+          en: "Table Booking" 
+        },
+        { 
+          src: "/projects/restaurant/features.jpg",
+          ar: "تتبع أوردرك مباشرة", 
+          en: "Live Order Tracking" 
+        }
       ]
     },
     { 
@@ -140,15 +204,6 @@ export default function WorksSection({ lang, isEnglish, language }) {
     if (!currentProject) return;
     const newIndex = (targetIndex + currentProject.images.length) % currentProject.images.length;
     setActiveImageIndex(newIndex);
-    
-    const targetElement = slideRefs.current[newIndex];
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-      });
-    }
   };
 
   const handleNext = () => goToSlide(activeImageIndex + 1);
@@ -235,11 +290,19 @@ export default function WorksSection({ lang, isEnglish, language }) {
             {/* Middle Image Container */}
             <div 
               className="w-full bg-neutral-900 rounded-2xl border border-neutral-800 overflow-hidden flex items-center justify-center"
-              style={{ width: '100%', height: '260px', backgroundColor: '#0a0a0a', borderRadius: '24px', border: '1px solid #262626', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0.5rem 0' }}
+              style={{ width: '100%', height: '260px', backgroundColor: '#0a0a0a', borderRadius: '24px', border: '1px solid #262626', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0.5rem 0', overflow: 'hidden' }}
             >
-              <span style={{ color: '#525252', fontSize: '16px', textAlign: 'center', padding: '0 20px' }}>
-                {project.images[0][activeLang] || project.images[0]['ar']}
-              </span>
+              {project.images[0]?.src ? (
+                <img 
+                  src={project.images[0].src} 
+                  alt={project.title[activeLang] || project.title['ar']} 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <span style={{ color: '#525252', fontSize: '16px', textAlign: 'center', padding: '0 20px' }}>
+                  {project.images[0][activeLang] || project.images[0]['ar']}
+                </span>
+              )}
             </div>
 
             {/* Footer with Description & Action Buttons */}
@@ -251,7 +314,7 @@ export default function WorksSection({ lang, isEnglish, language }) {
               {/* Action Buttons */}
               <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexDirection: 'row' }}>
                 <a 
-                  href="https://example.com" 
+                  href={project.liveUrl || "https://example.com"} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   style={{ flex: 1, backgroundColor: 'white', color: 'black', padding: '12px 20px', borderRadius: '14px', fontWeight: 'bold', fontSize: '14px', textAlign: 'center', textDecoration: 'none', display: 'inline-block' }}
@@ -299,11 +362,41 @@ export default function WorksSection({ lang, isEnglish, language }) {
       {/* Project Details Modal with Gallery */}
       {activeModal !== null && currentProject && (
         <div 
-          style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}
+          style={{ 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            width: '100vw', 
+            height: '100vh', 
+            backgroundColor: 'rgba(0,0,0,0.85)', 
+            backdropFilter: 'blur(10px)', 
+            zIndex: 9999, 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            padding: '16px',
+            overscrollBehavior: 'contain',
+            touchAction: 'none'
+          }}
           onClick={() => setActiveModal(null)}
         >
           <div 
-            style={{ backgroundColor: '#121212', border: '1px solid #262626', borderRadius: '24px', width: '100%', maxWidth: '850px', maxHeight: '90vh', overflowY: 'auto', position: 'relative', padding: '20px', color: '#ffffff', boxShadow: '0 24px 60px rgba(0,0,0,0.7)', boxSizing: 'border-box' }}
+            style={{ 
+              backgroundColor: '#121212', 
+              border: '1px solid #262626', 
+              borderRadius: '24px', 
+              width: '100%', 
+              maxWidth: '850px', 
+              maxHeight: '90vh', 
+              overflowY: 'auto', 
+              overscrollBehavior: 'contain',
+              WebkitOverflowScrolling: 'touch',
+              position: 'relative', 
+              padding: '20px', 
+              color: '#ffffff', 
+              boxShadow: '0 24px 60px rgba(0,0,0,0.7)', 
+              boxSizing: 'border-box' 
+            }}
             onClick={(e) => e.stopPropagation()}
             dir={activeLang === 'ar' ? 'rtl' : 'ltr'}
           >
@@ -332,7 +425,6 @@ export default function WorksSection({ lang, isEnglish, language }) {
                 }
                 .gallery-container {
                   width: 100%;
-                  height: clamp(240px, 40vh, 320px);
                 }
                 .details-container {
                   width: 100%;
@@ -340,10 +432,10 @@ export default function WorksSection({ lang, isEnglish, language }) {
                 @media (min-width: 768px) {
                   .modal-body-wrapper {
                     flex-direction: ${activeLang === 'ar' ? 'row-reverse' : 'row'} !important;
+                    align-items: stretch !important;
                   }
                   .gallery-container {
                     width: 50% !important;
-                    height: 380px !important;
                   }
                   .details-container {
                     width: 50% !important;
@@ -351,75 +443,278 @@ export default function WorksSection({ lang, isEnglish, language }) {
                 }
               `}</style>
 
-              {/* FORCED LTR GALLERY CONTAINER FOR PERFECT RTL/LTR CONSISTENCY */}
+              {/* GALLERY CONTAINER */}
               <div
                 className="gallery-container"
-                dir="ltr"
-                style={{ position: 'relative', backgroundColor: '#171717', border: '1px solid #262626', borderRadius: '16px', overflow: 'hidden' }}
+                style={{ display: 'flex', flexDirection: 'column', gap: '16px', justifyContent: 'center' }}
               >
-                {/* Horizontal Scrollable Slide Track */}
+                {/* Main Screen Display with sleek black letterbox padding & Fullscreen Action */}
                 <div
-                  ref={scrollContainerRef}
-                  onScroll={(e) => {
-                    const width = e.currentTarget.offsetWidth;
-                    if (width > 0) {
-                      const index = Math.round(Math.abs(e.currentTarget.scrollLeft) / width);
-                      setActiveImageIndex(index);
-                    }
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '350px',
+                    backgroundColor: '#050505',
+                    border: '1px solid #242424',
+                    borderRadius: '20px',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '12px',
+                    boxSizing: 'border-box'
                   }}
-                  style={{ display: 'flex', flexDirection: 'row', overflowX: 'auto', overflowY: 'hidden', scrollSnapType: 'x mandatory', touchAction: 'pan-x', width: '100%', height: '100%', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
                 >
-                  {currentProject.images.map((imgObj, idx) => {
-                    const titleStr = imgObj[activeLang] || imgObj['ar'];
-                    return (
-                      <div
-                        key={idx}
-                        ref={(el) => (slideRefs.current[idx] = el)}
-                        style={{ flexShrink: 0, width: '100%', height: '100%', scrollSnapAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#1a1a1a', color: '#888888', fontSize: '15px', fontWeight: '600', padding: '16px', boxSizing: 'border-box' }}
-                      >
-                        {titleStr}
-                      </div>
-                    );
-                  })}
+                  {currentProject.images[activeImageIndex]?.src ? (
+                    <img 
+                      src={currentProject.images[activeImageIndex].src} 
+                      alt={currentProject.images[activeImageIndex][activeLang] || currentProject.images[activeImageIndex]['ar']} 
+                      onClick={() => setFullscreenImage({
+                        src: currentProject.images[activeImageIndex].src,
+                        title: currentProject.images[activeImageIndex][activeLang] || currentProject.images[activeImageIndex]['ar']
+                      })}
+                      title={activeLang === 'ar' ? 'اضغط لتكبير الصورة في شاشة كاملة' : 'Click to view fullscreen'}
+                      style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'contain',
+                        borderRadius: '12px',
+                        cursor: 'zoom-in',
+                        transition: 'opacity 0.25s ease'
+                      }} 
+                    />
+                  ) : (
+                    <span style={{ color: '#888888', fontSize: '15px', fontWeight: '600', padding: '16px' }}>
+                      {currentProject.images[activeImageIndex]?.[activeLang] || currentProject.images[activeImageIndex]?.['ar']}
+                    </span>
+                  )}
+
+                  {/* Sleek Floating Pill Caption */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '16px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      padding: '6px 18px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                      backdropFilter: 'blur(8px)',
+                      borderRadius: '9999px',
+                      border: '1px solid rgba(255, 255, 255, 0.14)',
+                      color: '#ffffff',
+                      fontSize: '13px',
+                      fontWeight: '700',
+                      whiteSpace: 'nowrap',
+                      pointerEvents: 'none',
+                      boxShadow: '0 4px 16px rgba(0,0,0,0.7)'
+                    }}
+                  >
+                    {currentProject.images[activeImageIndex]?.[activeLang] || currentProject.images[activeImageIndex]?.['ar']}
+                  </div>
+
+                  {/* Fullscreen Zoom Button in Bottom Right Corner */}
+                  {currentProject.images[activeImageIndex]?.src && (
+                    <button
+                      onClick={() => setFullscreenImage({
+                        src: currentProject.images[activeImageIndex].src,
+                        title: currentProject.images[activeImageIndex][activeLang] || currentProject.images[activeImageIndex]['ar']
+                      })}
+                      title={activeLang === 'ar' ? 'تكبير وعرض الشاشة بالكامل' : 'View Full Screen'}
+                      aria-label="Fullscreen"
+                      style={{
+                        position: 'absolute',
+                        bottom: '14px',
+                        right: '14px',
+                        width: '38px',
+                        height: '38px',
+                        borderRadius: '10px',
+                        backgroundColor: 'rgba(20, 20, 20, 0.85)',
+                        backdropFilter: 'blur(8px)',
+                        border: '1px solid rgba(255, 255, 255, 0.25)',
+                        color: '#ffffff',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 10,
+                        transition: 'all 0.2s ease',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(40, 40, 40, 0.95)';
+                        e.currentTarget.style.transform = 'scale(1.08)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(20, 20, 20, 0.85)';
+                        e.currentTarget.style.transform = 'scale(1)';
+                      }}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <polyline points="9 21 3 21 3 15"></polyline>
+                        <line x1="21" y1="3" x2="14" y2="10"></line>
+                        <line x1="3" y1="21" x2="10" y2="14"></line>
+                      </svg>
+                    </button>
+                  )}
                 </div>
 
-                {/* Desktop Navigation Arrow Buttons */}
-                {currentProject.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={handlePrev}
-                      aria-label="Previous image"
-                      style={{
-                        position: 'absolute', top: '50%', left: '12px', transform: 'translateY(-50%)', backgroundColor: 'rgba(20, 20, 20, 0.75)', border: '1px solid rgba(255, 255, 255, 0.15)', color: '#ffffff', width: '36px', height: '36px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', backdropFilter: 'blur(4px)', zIndex: 5, transition: 'all 0.2s ease'
-                      }}
-                    >
-                      ‹
-                    </button>
+                {/* Bottom Navigation: [Left Arrow Circle] [Thumbnails in Center] [Right Arrow Circle] */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '12px',
+                    width: '100%',
+                    padding: '6px 0'
+                  }}
+                  dir="ltr"
+                >
+                  {/* Left Arrow Button (Enlarged Circle) */}
+                  <button
+                    onClick={handlePrev}
+                    aria-label="Previous image"
+                    style={{
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '50%',
+                      backgroundColor: '#181818',
+                      border: '1px solid #333333',
+                      color: '#ffffff',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '22px',
+                      flexShrink: 0,
+                      transition: 'all 0.2s ease',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#2a2a2a';
+                      e.currentTarget.style.borderColor = '#666666';
+                      e.currentTarget.style.transform = 'scale(1.08)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#181818';
+                      e.currentTarget.style.borderColor = '#333333';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    ‹
+                  </button>
 
-                    <button
-                      onClick={handleNext}
-                      aria-label="Next image"
-                      style={{
-                        position: 'absolute', top: '50%', right: '12px', transform: 'translateY(-50%)', backgroundColor: 'rgba(20, 20, 20, 0.75)', border: '1px solid rgba(255, 255, 255, 0.15)', color: '#ffffff', width: '36px', height: '36px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', backdropFilter: 'blur(4px)', zIndex: 5, transition: 'all 0.2s ease'
-                      }}
-                    >
-                      ›
-                    </button>
-                  </>
-                )}
-
-                {/* Slider Dots Indicator */}
-                {currentProject.images.length > 1 && (
-                  <div style={{ position: 'absolute', bottom: '12px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '6px', backgroundColor: 'rgba(0, 0, 0, 0.6)', padding: '6px 12px', borderRadius: '9999px', backdropFilter: 'blur(4px)' }}>
-                    {currentProject.images.map((_, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => goToSlide(idx)}
-                        style={{ border: 'none', padding: 0, cursor: 'pointer', width: activeImageIndex === idx ? '16px' : '6px', height: '6px', borderRadius: '9999px', backgroundColor: activeImageIndex === idx ? '#ffffff' : '#525252', transition: 'all 0.25s ease' }}
-                      />
-                    ))}
+                  {/* Thumbnails Row in Center (Enlarged Boxes) */}
+                  <div
+                    ref={thumbnailsContainerRef}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      overflowX: 'auto',
+                      scrollbarWidth: 'none',
+                      padding: '4px 2px',
+                      maxWidth: '100%',
+                      scrollBehavior: 'smooth'
+                    }}
+                  >
+                    {currentProject.images.map((imgObj, idx) => {
+                      const isActive = activeImageIndex === idx;
+                      const titleStr = imgObj[activeLang] || imgObj['ar'];
+                      return (
+                        <button
+                          key={idx}
+                          ref={(el) => (thumbnailRefs.current[idx] = el)}
+                          onClick={() => setActiveImageIndex(idx)}
+                          title={titleStr}
+                          style={{
+                            width: '84px',
+                            height: '58px',
+                            borderRadius: '12px',
+                            border: isActive ? '2.5px solid #ffffff' : '1px solid #2e2e2e',
+                            backgroundColor: '#111111',
+                            cursor: 'pointer',
+                            overflow: 'hidden',
+                            padding: 0,
+                            flexShrink: 0,
+                            opacity: isActive ? 1 : 0.45,
+                            transform: isActive ? 'scale(1.05)' : 'scale(1)',
+                            transition: 'all 0.2s ease',
+                            boxShadow: isActive ? '0 0 16px rgba(255, 255, 255, 0.35)' : 'none'
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.opacity = '0.85';
+                              e.currentTarget.style.borderColor = '#555';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.opacity = '0.45';
+                              e.currentTarget.style.borderColor = '#2e2e2e';
+                            }
+                          }}
+                        >
+                          {imgObj.src ? (
+                            <img
+                              src={imgObj.src}
+                              alt={titleStr}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            />
+                          ) : (
+                            <span
+                              style={{
+                                fontSize: '12px',
+                                color: '#888',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: '100%'
+                              }}
+                            >
+                              {idx + 1}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
-                )}
+
+                  {/* Right Arrow Button (Enlarged Circle) */}
+                  <button
+                    onClick={handleNext}
+                    aria-label="Next image"
+                    style={{
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '50%',
+                      backgroundColor: '#181818',
+                      border: '1px solid #333333',
+                      color: '#ffffff',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '22px',
+                      flexShrink: 0,
+                      transition: 'all 0.2s ease',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#2a2a2a';
+                      e.currentTarget.style.borderColor = '#666666';
+                      e.currentTarget.style.transform = 'scale(1.08)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#181818';
+                      e.currentTarget.style.borderColor = '#333333';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    ›
+                  </button>
+                </div>
               </div>
 
               {/* Bottom (Mobile) / Right (Desktop): Project Text & Details */}
@@ -451,7 +746,7 @@ export default function WorksSection({ lang, isEnglish, language }) {
                 </div>
 
                 <a 
-                  href="https://example.com" 
+                  href={currentProject.liveUrl || "https://example.com"} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   style={{ backgroundColor: 'white', color: 'black', padding: '14px 20px', borderRadius: '14px', fontWeight: 'bold', fontSize: '14px', textAlign: 'center', textDecoration: 'none', display: 'block', marginTop: '1.5rem' }}
@@ -463,6 +758,15 @@ export default function WorksSection({ lang, isEnglish, language }) {
             </div>
           </div>
         </div>
+      )}
+      {/* Fullscreen Interactive Lightbox Modal */}
+      {fullscreenImage && (
+        <ImageLightbox
+          src={typeof fullscreenImage === 'string' ? fullscreenImage : fullscreenImage.src}
+          title={typeof fullscreenImage === 'object' ? fullscreenImage.title : ''}
+          onClose={() => setFullscreenImage(null)}
+          lang={activeLang}
+        />
       )}
     </section>
   );
