@@ -11,11 +11,11 @@ export default function Contact() {
   
   const localT = {
     ar: {
-      heroTitleLine1: "دعنا ننقل أعمالك إلى",
+      heroTitleLine1: "خلينا ننقل بيزنسك لـ",
       heroTitleLine2: "العصر الرقمي.",
-      heroSubtitle: "سواء كنت بحاجة لنظام مؤسسي، أو متجر إلكتروني يحقق مبيعات ضخمة، نحن هنا لبناء نجاحك.",
-      whatsappBtn: "راسلنا عبر الواتساب",
-      callBtn: "اتصل بنا"
+      heroSubtitle: "سواء كنت محتاج سيستم لشركتك، أو متجر إلكتروني يبيع بالملايين، إحنا معاك خطوة بخطوة من أول الفكرة لحد التنفيذ.",
+      whatsappBtn: "كلمنا على الواتساب فوراً",
+      callBtn: "اتصل بينا هاتفياً"
     },
     en: {
       heroTitleLine1: "Let's take your business to the",

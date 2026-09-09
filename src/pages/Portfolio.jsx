@@ -49,9 +49,9 @@ export default function Portfolio({ lang, isEnglish, language }) {
 
   const categories = [
     { id: 'all', label: { ar: 'الكل', en: 'All' } },
-    { id: 'ecommerce', label: { ar: 'متاجر إلكترونية', en: 'E-Commerce' } },
-    { id: 'education', label: { ar: 'منصات تعليمية', en: 'Educational Platforms' } },
-    { id: 'internal', label: { ar: 'أنظمة ولوحات تحكم', en: 'Internal Systems' } },
+    { id: 'ecommerce', label: { ar: 'متاجر ومطاعم', en: 'E-Commerce & Food' } },
+    { id: 'education', label: { ar: 'أكاديميات وتدريب', en: 'Academies & Training' } },
+    { id: 'internal', label: { ar: 'أنظمة ولوحات تحكم', en: 'Dashboards & Systems' } },
     { id: 'automation', label: { ar: 'حلول الذكاء والأتمتة', en: 'AI & Automation' } }
   ];
 
@@ -60,7 +60,7 @@ export default function Portfolio({ lang, isEnglish, language }) {
     ar: {
       sectionTag: "سابقة",
       sectionTagHighlight: "أعمالنا",
-      sectionSub: "دليل على قدرتنا على تقديم حلول رقمية عالمية المستوى.",
+      sectionSub: "شغل حقيقي عملناه لعملائنا وساعدناهم يكبروا أرقامهم ويسهلوا إدارة بيزنسهم.",
       liveDemo: "تجربة النسخة الحية ↗",
       viewDetails: "عرض التفاصيل",
       modalSub: "تفاصيل المشروع التفاعلي",
@@ -91,20 +91,20 @@ export default function Portfolio({ lang, isEnglish, language }) {
       title: { ar: "منصة مطعم الشاورما الدمشقية", en: "01Group Restaurant | Al-Demashqi" }, 
       subtitle: { ar: "منظومة مطاعم سحابية وقائمة طلبات ذكية متكاملة", en: "Cloud Restaurant & Smart Ordering System" }, 
       desc: { 
-        ar: "منصة ويب ومطاعم سحابية متطورة تتيح للعملاء تصفح قائمة الطعام بمرونة فائقة، تخصيص الوجبات، وإرسال الطلبات مباشرة بنقرة واحدة عبر الواتساب للمطبخ مع حساب تلقائي لرسوم التوصيل والضريبة.", 
+        ar: "منصة ويب ومطاعم سحابية متطورة تتيح للزبائن تصفح قائمة الأكل بسهولة، اختيار إضافات السندوتشات والوجبات، وإرسال الطلبات مباشرة بنقرة واحدة عبر الواتساب للمطبخ مع حساب تلقائي لرسوم التوصيل والضريبة.", 
         en: "A modern cloud restaurant ordering platform featuring real-time menu browsing, meal customization, dynamic cart calculations, and 1-click WhatsApp order dispatching with automated delivery fees." 
       },
       value: {
-        ar: "الفئة المستهدفة: عشاق الأكل الشامي والمطاعم الساعية للاستقلال الرقمي. القيمة المحققة: توفير عمولات تطبيقات التوصيل بنسبة 100%، رفع المبيعات المباشرة بأكثر من 40%، وتسريع تجربة الطلب في أقل من دقيقة.",
+        ar: "الفئة المستهدفة: عشاق الأكل السوري ومحلات ومطاعم الشاورما الساعية للاستقلال وتوفير المصاريف. القيمة المحققة: توفير 100% من عمولات أبلكيشنز التوصيل، زيادة المبيعات المباشرة بأكتر من 40%، وتجربة طلب سهلة في أقل من دقيقة.",
         en: "Target Audience: Food enthusiasts & dining brands scaling direct channels. Delivered Value: Eliminates aggregator fees, boosts direct sales by 40%+, and slashes ordering time to under 60 seconds."
       },
       features: {
         ar: [
-          "منيو رقمي حي مع فلترة سريعة (شاورما، فتات ملوكي، بيتزا كرسبي)",
-          "سلة طلبات تفاعلية ذكية لحساب الإجمالي والضريبة ورسوم التوصيل لحظياً",
-          "تكامل فوري ومباشر مع الواتساب لإرسال الفاتورة والعنوان بنقرة واحدة",
-          "نظام حجز ترابيزات فوري واختيار عدد الضيوف والفرع أونلاين",
-          "تصميم متجاوب بالكامل لتجربة تصفح وطلب سلسة تحاكي تطبيقات الموبايل"
+          "منيو رقمي حي مع فلترة سريعة وسهلة (شاورما، فتات، بيتزا)",
+          "سلة طلبات ذكية بتحسب الإجمالي والضريبة والتوصيل في ثانية",
+          "ربط مباشر بالواتساب لإرسال الفاتورة والعنوان بلوكيشن المشتري بضغطة زرار",
+          "نظام حجز ترابيزات أونلاين واختيار عدد الأفراد والفرع",
+          "تصميم متجاوب وسريع جداً على كل الموبايلات يديك إحساس الأبلكيشن"
         ],
         en: [
           "Live interactive menu with real-time category filtering",
@@ -140,69 +140,136 @@ export default function Portfolio({ lang, isEnglish, language }) {
     { 
       id: 2, 
       categoryKey: 'education',
-      title: { ar: "اسم المشروع الثاني", en: "Smart Web Application" }, 
-      subtitle: { ar: "تطبيقات الويب الذكية", en: "Intelligent Web Solutions" }, 
+      liveUrl: 'https://swimming-coach-portfolio.zeronegroup0.workers.dev/',
+      title: { ar: "أكاديمية مدرب السباحة المحترف", en: "Zerone Aquatic | Swimming Academy & Coach" }, 
+      subtitle: { ar: "منصة تدريب سباحة وحجز برامج تدريبية ذكية متكاملة", en: "Aquatic Coaching Platform & Program Booking" }, 
       desc: { 
-        ar: "وصف مختصر يوضح الفكرة من المشروع والحلول البرمجية أو التصميمية التي تم تقديمها لتحقيق أهداف العميل.", 
-        en: "A concise description explaining the project concept and tailored software solutions provided to meet client goals." 
+        ar: "موقع متكامل لأكاديمية ومدرب سباحة محترف معتمد دولياً (ASCA & Red Cross)، بيعرض البرامج التدريبية المخصصة للأطفال، الرجال، والسيدات، مع مواعيد الحصص والتفاصيل، وحجز فوري وتواصل مباشر مع الكابتن بنقرة واحدة على الواتساب.", 
+        en: "A premier aquatic coaching and academy platform showcasing specialized training programs for Kids, Men, and Women, schedule details, and 1-click WhatsApp session booking." 
       },
       value: {
-        ar: "بناء أنظمة تفاعلية ذكية تتيح للعملاء أتمتة العمليات اليومية وتوفير الوقت والمجهود.",
-        en: "Building smart interactive systems enabling clients to automate daily routines and save time and effort."
+        ar: "الفئة المستهدفة: أولياء الأمور، الرياضيين، ومحبي السباحة اللي بيدوروا على تدريب احترافي وبيئة آمنة. القيمة المحققة: حجز مباشر وسريع على الواتساب رفع نسبة المشتركين بأكتر من 60%، توضيح كامل للمواعيد والأسعار بدون استفسارات متكررة تضيع وقت الكابتن، وبراند رياضي راقي يبني الثقة فوراً.",
+        en: "Target Audience: Parents, fitness seekers, and competitive athletes. Delivered Value: Streamlined WhatsApp booking boosting enrollment by 60%+, eliminating back-and-forth inquiries, and projecting an elite professional coaching brand."
       },
       features: {
-        ar: ["واجهات مستخدم متطورة", "تكامل كامل مع قواعد البيانات", "دعم متعدد اللغات والعملات"],
-        en: ["Advanced modern user interfaces", "Seamless database integration", "Multi-language & multi-currency support"]
+        ar: [
+          "عرض برامج تدريبية مخصصة لكل فئة (أطفال، رجال، سيدات) مع المواعيد بالتفصيل",
+          "حجز حصص وتواصل فوري مباشر عبر الواتساب بدون أي خطوات معقدة",
+          "استعراض كامل لشهادات وخبرات الكوتش الدولية (ASCA & Red Cross)",
+          "نظام تحليل حركي بالفيديو تحت المية لمتابعة تطور مستوى كل سباح",
+          "تصميم عصري سريع جداً وشغال بنعومة تامة على كل شاشات الموبايل"
+        ],
+        en: [
+          "Customized training programs with clear schedules for Kids, Men, and Women",
+          "Instant 1-click WhatsApp booking eliminating form friction",
+          "Official credentials showcase including ASCA & Red Cross certifications",
+          "Underwater video analysis & weekly progression tracking highlights",
+          "100% responsive, high-speed mobile-first design for seamless athlete onboarding"
+        ]
       },
       images: [
-        { ar: "معاينة رئيسية - الصفحة الرئيسية", en: "Main Preview - Landing Page" },
-        { ar: "معاينة ثانية - نظام الحجوزات", en: "Second Preview - Booking System" },
-        { ar: "معاينة ثالثة - لوحة الإدارة", en: "Third Preview - Admin Panel" }
+        { 
+          src: "/projects/swimming/hero.jpg",
+          ar: "الواجهة الرئيسية والتعريف بالأكاديمية", 
+          en: "Academy Hero & Overview" 
+        },
+        { 
+          src: "/projects/swimming/programs.jpg",
+          ar: "برامج التدريب ومواعيد الحصص", 
+          en: "Training Programs & Schedules" 
+        },
+        { 
+          src: "/projects/swimming/features.jpg",
+          ar: "مميزات التدريب وتحليل الأداء بالفيديو", 
+          en: "Coaching Features & Video Analysis" 
+        },
+        { 
+          src: "/projects/swimming/booking.jpg",
+          ar: "الحجز والتواصل المباشر عبر الواتساب", 
+          en: "Direct Booking & WhatsApp Contact" 
+        }
       ]
     },
     { 
       id: 3, 
       categoryKey: 'internal',
-      title: { ar: "اسم المشروع الثالث", en: "Server & Systems Engineering" }, 
-      subtitle: { ar: "هندسة السيرفرات والأنظمة", en: "Cloud Infrastructure Setup" }, 
+      liveUrl: 'https://example.com/fintech-demo',
+      title: { ar: "لوحة تحكم التكنولوجيا المالية", en: "Fintech Real-time Dashboard" }, 
+      subtitle: { ar: "منظومة سحابية متقدمة لمتابعة السيولة وتحليل العمليات", en: "Real-time Financial Operations & Analytics" }, 
       desc: { 
-        ar: "وصف مختصر يوضح الفكرة من المشروع والحلول البرمجية أو التصميمية التي تم تقديمها لتحقيق أهداف العميل.", 
-        en: "A detailed breakdown of the cloud infrastructure and backend engineering provided to ensure system reliability." 
+        ar: "سيستم إداري متكامل للشركات والمؤسسات المالية بيجمع كل العمليات الحسابية، التحويلات، وفواتير العملاء في شاشة واحدة لحظة بلحظة مع تقارير ذكية دقيقة.", 
+        en: "A unified enterprise dashboard aggregating transactions, real-time liquidity streams, and automated fiscal reporting." 
       },
       value: {
-        ar: "توفير بنية تحتية قوية ومستقرة تضمن استمرارية الأعمال بأعلى كفاءة.",
-        en: "Providing a robust and stable infrastructure ensuring business continuity with maximum efficiency."
+        ar: "الفئة المستهدفة: الشركات الناشئة والمؤسسات اللي عندها حجم معاملات يومية ضخم. القيمة المحققة: توفير 70% من وقت إعداد التقارير المالية، كشف فوري لأي حركة مشبوهة، وتحكم كامل في الصلاحيات وإدارة الكاش.",
+        en: "Delivered Value: Cuts financial reporting time by 70%, provides instant anomaly detection, and ensures bank-grade transaction auditing."
       },
       features: {
-        ar: ["هيكل سيرفر متطور", "مراقبة الأداء على مدار الساعة", "أنظمة حماية متقدمة"],
-        en: ["Advanced scalable server architecture", "24/7 proactive performance monitoring", "Advanced firewall and security systems"]
+        ar: [
+          "متابعة حية للتحويلات والسيولة على مدار الساعة",
+          "تقارير مالية فورية بصيغ PDF و Excel قابلة للتخصيص",
+          "نظام صلاحيات متقدم وأمان مشدد لحماية بيانات العملاء",
+          "ربط مباشر مع بوابات الدفع والبنوك عبر الـ APIs"
+        ],
+        en: [
+          "Live real-time liquidity and transaction monitoring stream",
+          "Instant customizable reporting exported directly to PDF & Excel",
+          "Granular role-based access control with bank-level encryption",
+          "Direct API integration with leading regional payment gateways"
+        ]
       },
       images: [
-        { ar: "معاينة رئيسية - هيكل السيرفر", en: "Main Preview - Server Architecture" },
-        { ar: "معاينة ثانية - التقارير الحية", en: "Second Preview - Live Performance Reports" }
+        { 
+          src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+          ar: "الشاشة الرئيسية لمتابعة التدفقات المالية", 
+          en: "Main Financial Flow Overview" 
+        },
+        { 
+          src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+          ar: "تحليل العمليات والتقارير الشهرية", 
+          en: "Transaction Analytics & Monthly Reports" 
+        }
       ]
     },
     { 
       id: 4, 
       categoryKey: 'automation',
-      title: { ar: "اسم المشروع الرابع", en: "AI Automation Workflow" }, 
-      subtitle: { ar: "حلول الأتمتة والذكاء الاصطناعي", en: "AI & Process Automation" }, 
+      liveUrl: 'https://example.com/ai-demo',
+      title: { ar: "منصة أتمتة العمليات بالذكاء الاصطناعي", en: "AI Process Automation Suite" }, 
+      subtitle: { ar: "أتمتة خدمة العملاء وإدارة المهام الروتينية بذكاء", en: "Intelligent Workflow & CRM Automation" }, 
       desc: { 
-        ar: "وصف مختصر يوضح الفكرة من المشروع والحلول البرمجية أو التصميمية التي تم تقديمها لتحقيق أهداف العميل.", 
-        en: "An overview of how AI and automation were seamlessly integrated into the client's existing business processes." 
+        ar: "حل برمجي ذكي بيربط خدمة العملاء والـ CRM بالذكاء الاصطناعي، بيرد على استفسارات الزباين فوراً 24/7 ويحلل طلباتهم ويحولها لمهام ومبيعات مؤكدة أوتوماتيك.", 
+        en: "An enterprise AI workflow platform integrating CRM and customer messaging to automate replies, categorize leads, and resolve routine support tickets." 
       },
       value: {
-        ar: "تحسين كفاءة العمليات وتقليل الأخطاء البشرية من خلال الاعتماد على الذكاء الاصطناعي.",
-        en: "Improving operational efficiency and reducing human errors by heavily leveraging Artificial Intelligence."
+        ar: "الفئة المستهدفة: الشركات اللي بتستقبل مئات الرسايل يومياً ومحتاجة تقلل تكلفة خدمة العملاء. القيمة المحققة: رد في أقل من 5 ثواني على مدار اليوم، تقليل الضغط على فريق الدعم بنسبة 65%، ومضاعفة المبيعات المحولة.",
+        en: "Delivered Value: Under 5-second 24/7 response time, 65% drop in manual support tickets, and doubled conversion rate for qualified leads."
       },
       features: {
-        ar: ["نماذج ذكاء اصطناعي مخصصة", "أتمتة سير العمل بالكامل", "تكامل سلس مع الأنظمة الحالية"],
-        en: ["Custom trained AI models", "Fully automated end-to-end workflows", "Seamless integration with existing CRM systems"]
+        ar: [
+          "شات بوت ذكي بيفهم اللهجة المصرية والعربية بطلاقة",
+          "ربط أوتوماتيك مع الواتساب، فيسبوك، وإنستجرام",
+          "لوحة تحكم مركزية لمتابعة محادثات العملاء ومعدل التحويل",
+          "أتمتة إدخال البيانات في الـ CRM بدون أي تدخل بشري"
+        ],
+        en: [
+          "Dialect-aware conversational AI responding fluently to client queries",
+          "Omnichannel auto-sync across WhatsApp, Facebook, and Instagram",
+          "Centralized dashboard tracking resolution metrics and sales conversions",
+          "Zero-touch automated data entry syncing into existing CRMs"
+        ]
       },
       images: [
-        { ar: "معاينة رئيسية - تدفق الأتمتة", en: "Main Preview - Automation Flow" },
-        { ar: "معاينة ثانية - واجهة المحادثة", en: "Second Preview - Chat Interface" },
-        { ar: "معاينة ثالثة - إعدادات الذكاء الاصطناعي", en: "Third Preview - AI Settings" }
+        { 
+          src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+          ar: "واجهة المحادثات الذكية والرد الآلي", 
+          en: "Smart AI Chat Interface" 
+        },
+        { 
+          src: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+          ar: "خريطة تدفق الأتمتة وسير العمل", 
+          en: "Workflow Automation Pipeline" 
+        }
       ]
     }
   ];
