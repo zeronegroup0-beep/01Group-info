@@ -82,7 +82,7 @@ export default function WorksSection({ lang, isEnglish, language }) {
     { 
       id: 1, 
       liveUrl: 'https://01group-restaurant.zeronegroup0.workers.dev/',
-      title: { ar: "منصة مطعم الشاورما الدمشقية", en: "01Group Restaurant | Al-Demashqi" }, 
+      title: { ar: "موقع مطعم الشاورما السورية", en: "01Group Restaurant | Syrian Shawarma" }, 
       subtitle: { ar: "منظومة مطاعم سحابية وقائمة طلبات ذكية متكاملة", en: "Cloud Restaurant & Smart Ordering System" }, 
       desc: { 
         ar: "منصة ويب ومطاعم سحابية متطورة تتيح للزبائن تصفح قائمة الأكل بسهولة، اختيار إضافات السندوتشات والوجبات، وإرسال الطلبات مباشرة بنقرة واحدة عبر الواتساب للمطبخ مع حساب تلقائي لرسوم التوصيل والضريبة.", 
