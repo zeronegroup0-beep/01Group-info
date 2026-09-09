@@ -13,12 +13,16 @@ export default function Footer() {
   const [budgetVal, setBudgetVal] = useState('');
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submittedData, setSubmittedData] = useState(null);
   const selectRef = useRef(null);
 
   // Clear validation bubbles and close dropdowns when navigating between pages
   useEffect(() => {
     setErrors({});
     setIsSelectOpen(false);
+    setSubmitStatus(null);
   }, [location.pathname]);
 
   const handleInput = (e) => {
@@ -27,7 +31,7 @@ export default function Footer() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const newErrors = {};
@@ -66,8 +70,56 @@ export default function Footer() {
       return;
     }
     
-    // Process form submission
-    console.log("Form submitted successfully");
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const data = {
+      name: elements['name']?.value || '',
+      email: elements['email']?.value || '',
+      phone: elements['phone']?.value || '',
+      budget: budgetVal ? `${budgetVal} ${isRtl ? 'ج.م' : 'EGP'}` : (elements['budget']?.value || 'غير محددة'),
+      message: elements['message']?.value || ''
+    };
+
+    const payload = {
+      "اسم العميل": data.name,
+      "البريد الإلكتروني": data.email,
+      "رقم التليفون / واتساب": data.phone,
+      "الميزانية المتوقعة": data.budget,
+      "تفاصيل المشروع": data.message,
+      _subject: `طلب تواصل جديد من موقع 01 Group: ${data.name} (${data.phone})`,
+      _template: 'table'
+    };
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/zeronegroup0@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        setSubmitStatus('success');
+        setSubmittedData(data);
+        form.reset();
+        setBudgetVal('');
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (err) {
+      console.error('Footer form submission error:', err);
+      setSubmitStatus('error');
+      const mailtoSubject = encodeURIComponent(`طلب مشروع جديد من: ${data.name}`);
+      const mailtoBody = encodeURIComponent(
+        `الاسم: ${data.name}\nالبريد: ${data.email}\nالهاتف/واتساب: ${data.phone}\nالميزانية: ${data.budget}\nالتفاصيل:\n${data.message}`
+      );
+      window.open(`mailto:zeronegroup0@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const renderValidationBubble = (fieldName) => {
@@ -282,9 +334,79 @@ export default function Footer() {
             {renderValidationBubble('message')}
           </div>
 
-          <button type="submit" className="btn btn-primary submit-btn magnetic" data-strength="40">
-            {t('formSubmit')}
+          <button 
+            type="submit" 
+            disabled={isSubmitting} 
+            className="btn btn-primary submit-btn magnetic" 
+            data-strength="40"
+            style={{
+              opacity: isSubmitting ? 0.7 : 1,
+              cursor: isSubmitting ? 'not-allowed' : 'pointer'
+            }}
+          >
+            {isSubmitting 
+              ? (isRtl ? 'جاري الإرسال...' : 'Sending...') 
+              : t('formSubmit')}
           </button>
+
+          {/* Success Feedback */}
+          {submitStatus === 'success' && (
+            <div 
+              style={{
+                marginTop: '1rem',
+                padding: '1.25rem',
+                borderRadius: '12px',
+                backgroundColor: 'rgba(34, 197, 94, 0.08)',
+                border: '1px solid rgba(34, 197, 94, 0.3)',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ fontWeight: 700, fontSize: '1.05rem', color: '#4ade80', marginBottom: '0.4rem' }}>
+                {isRtl ? '🎉 تم إرسال رسالتك بنجاح!' : '🎉 Message Sent Successfully!'}
+              </div>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+                {isRtl 
+                  ? 'وصلت رسالتك لفريق 01 Group وسنتواصل معك قريباً. يمكنك أيضاً المتابعة عبر واتساب:' 
+                  : 'Your request reached our team and we will reach out shortly.'}
+              </p>
+              {submittedData && (
+                <a
+                  href={`https://wa.me/201023412285?text=${encodeURIComponent(
+                    `مرحباً 01 Group، أرسلت طلباً عبر الموقع:\n- الاسم: ${submittedData.name}\n- الهاتف: ${submittedData.phone}\n- الميزانية: ${submittedData.budget}\n- الرسالة: ${submittedData.message}`
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="direct-contact-btn whatsapp-btn"
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', gap: '8px', padding: '0.6rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>{isRtl ? 'متابعة عبر واتساب 💬' : 'Follow up on WhatsApp 💬'}</span>
+                </a>
+              )}
+            </div>
+          )}
+
+          {/* Error Feedback */}
+          {submitStatus === 'error' && (
+            <div 
+              style={{
+                marginTop: '1rem',
+                padding: '0.75rem',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                border: '1px solid rgba(239, 68, 68, 0.3)',
+                color: '#f87171',
+                textAlign: 'center',
+                fontSize: '0.9rem'
+              }}
+            >
+              {isRtl 
+                ? 'تم فتح تطبيق البريد لإرسال رسالتك، أو راسلنا مباشرة عبر واتساب.' 
+                : 'Opened your mail app to send the request, or reach us directly on WhatsApp.'}
+            </div>
+          )}
         </form>
       </div>
 

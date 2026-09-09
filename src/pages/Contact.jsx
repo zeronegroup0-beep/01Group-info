@@ -51,14 +51,90 @@ export default function Contact() {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // null | 'success' | 'error'
+  const [submittedData, setSubmittedData] = useState(null);
+
+  const serviceLabels = {
+    ar: {
+      web: "موقع ويب تعريفي / متقدم",
+      mobile: "تطبيق موبايل (iOS / Android)",
+      ecommerce: "متجر إلكتروني احترافي",
+      ai: "حلول وأنظمة الذكاء الاصطناعي",
+      other: "أخرى / فكرة مخصصة"
+    },
+    en: {
+      web: "Custom Web Application",
+      mobile: "Mobile Application (iOS / Android)",
+      ecommerce: "E-Commerce Platform",
+      ai: "AI Solutions & Automation",
+      other: "Other Custom Project"
+    }
+  };
+
+  const getBudgetLabel = (val) => {
+    const opt = budgetOptions[activeLang]?.find((o) => o.value === val);
+    return opt ? opt.label : val;
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // In a real app, send formData to the backend here
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const sLabel = serviceLabels[activeLang][formData.service] || formData.service || (activeLang === 'ar' ? 'غير محدد' : 'Not specified');
+    const bLabel = getBudgetLabel(formData.budget) || (activeLang === 'ar' ? 'غير محدد' : 'Not specified');
+
+    const payload = {
+      "اسم العميل": formData.name,
+      "البريد الإلكتروني": formData.email,
+      "رقم التليفون / واتساب": formData.phone,
+      "نوع المشروع": sLabel,
+      "الميزانية المتوقعة": bLabel,
+      "تفاصيل المشروع": formData.message,
+      _subject: `طلب مشروع جديد: ${formData.name} (${formData.phone})`,
+      _template: 'table'
+    };
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/zeronegroup0@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        setSubmitStatus('success');
+        setSubmittedData({ ...formData, serviceLabel: sLabel, budgetLabel: bLabel });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          budget: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (err) {
+      console.error('Submission error:', err);
+      setSubmitStatus('error');
+      const mailtoSubject = encodeURIComponent(`طلب مشروع جديد من: ${formData.name}`);
+      const mailtoBody = encodeURIComponent(
+        `الاسم: ${formData.name}\nالبريد: ${formData.email}\nالهاتف/واتساب: ${formData.phone}\nنوع المشروع: ${sLabel}\nالميزانية: ${bLabel}\nالتفاصيل:\n${formData.message}`
+      );
+      window.open(`mailto:zeronegroup0@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -92,12 +168,12 @@ export default function Contact() {
               </svg>
               {localT[activeLang].callBtn}
             </a>
-            <a href="mailto:hello@01group.com" className="direct-contact-btn magnetic" data-strength="20">
+            <a href="mailto:zeronegroup0@gmail.com" className="direct-contact-btn magnetic" data-strength="20">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
-              hello@01group.com
+              zeronegroup0@gmail.com
             </a>
           </div>
 
@@ -278,13 +354,94 @@ export default function Contact() {
               <label htmlFor="message">{t('formMessage')}</label>
             </div>
 
-            <button type="submit" className="btn btn-primary magnetic submit-btn" data-strength="40" style={{ width: '100%' }}>
-              <span>{t('formSubmit')}</span>
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginLeft: '10px' }}>
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
+            <button 
+              type="submit" 
+              disabled={isSubmitting} 
+              className="btn btn-primary magnetic submit-btn" 
+              data-strength="40" 
+              style={{ 
+                width: '100%', 
+                opacity: isSubmitting ? 0.7 : 1, 
+                cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px'
+              }}
+            >
+              <span>
+                {isSubmitting 
+                  ? (activeLang === 'ar' ? 'جاري إرسال تفاصيل مشروعك...' : 'Sending your project details...') 
+                  : t('formSubmit')}
+              </span>
+              {!isSubmitting && (
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              )}
             </button>
+
+            {/* Success Feedback Alert */}
+            {submitStatus === 'success' && (
+              <div 
+                style={{
+                  marginTop: '1.5rem',
+                  padding: '1.5rem',
+                  borderRadius: '16px',
+                  backgroundColor: 'rgba(34, 197, 94, 0.08)',
+                  border: '1px solid rgba(34, 197, 94, 0.3)',
+                  boxShadow: '0 8px 32px rgba(34, 197, 94, 0.1)',
+                  textAlign: 'center'
+                }}
+              >
+                <div style={{ fontWeight: 700, fontSize: '1.15rem', color: '#4ade80', marginBottom: '0.5rem' }}>
+                  {activeLang === 'ar' ? '🎉 تم إرسال تفاصيل مشروعك بنجاح!' : '🎉 Project Details Sent Successfully!'}
+                </div>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: '1.5' }}>
+                  {activeLang === 'ar' 
+                    ? 'وصلت رسالتك لإيميل الشركة، وفريقنا هيراجع التفاصيل ويتواصل معاك في أقرب وقت ممكن.' 
+                    : 'Your inquiry has been delivered directly to our inbox. Our team will reach out to you shortly.'}
+                </p>
+                {submittedData && (
+                  <a
+                    href={`https://wa.me/201023412285?text=${encodeURIComponent(
+                      `مرحباً 01 Group، لقد قمت بإرسال تفاصيل مشروعي عبر الموقع:\n- الاسم: ${submittedData.name}\n- الهاتف: ${submittedData.phone}\n- نوع المشروع: ${submittedData.serviceLabel}\n- الميزانية: ${submittedData.budgetLabel}\n- التفاصيل: ${submittedData.message}`
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="direct-contact-btn whatsapp-btn"
+                    style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', gap: '8px', padding: '0.75rem 1.5rem', textDecoration: 'none' }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    <span>{activeLang === 'ar' ? 'تأكيد الرسالة فوراً عبر واتساب 💬' : 'Confirm via WhatsApp 💬'}</span>
+                  </a>
+                )}
+              </div>
+            )}
+
+            {/* Fallback Error Alert */}
+            {submitStatus === 'error' && (
+              <div 
+                style={{
+                  marginTop: '1.25rem',
+                  padding: '1rem',
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                  color: '#f87171',
+                  textAlign: 'center'
+                }}
+              >
+                <p style={{ margin: 0, fontSize: '0.95rem' }}>
+                  {activeLang === 'ar' 
+                    ? 'تم فتح تطبيق البريد الخاص بك لإرسال الرسالة، أو تواصل معنا مباشرة عبر واتساب.'
+                    : 'Your email app was opened to send your inquiry, or connect with us directly via WhatsApp.'}
+                </p>
+              </div>
+            )}
           </form>
         </div>
 
