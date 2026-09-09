@@ -81,7 +81,7 @@ export default function WorksSection({ lang, isEnglish, language }) {
   const projects = [
     { 
       id: 1, 
-      liveUrl: 'https://01group-restaurant.ososghazaly72.workers.dev/',
+      liveUrl: 'https://01group-restaurant.zeronegroup0.workers.dev/',
       title: { ar: "منصة مطعم الشاورما الدمشقية", en: "01Group Restaurant | Al-Demashqi" }, 
       subtitle: { ar: "منظومة مطاعم سحابية وقائمة طلبات ذكية متكاملة", en: "Cloud Restaurant & Smart Ordering System" }, 
       desc: { 
