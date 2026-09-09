@@ -98,14 +98,16 @@ export default function WorksSection({ lang, isEnglish, language }) {
           "سلة طلبات ذكية بتحسب الإجمالي والضريبة والتوصيل في ثانية",
           "ربط مباشر بالواتساب لإرسال الفاتورة والعنوان بلوكيشن المشتري بضغطة زرار",
           "نظام حجز ترابيزات أونلاين واختيار عدد الأفراد والفرع",
-          "تصميم متجاوب وسريع جداً على كل الموبايلات يديك إحساس الأبلكيشن"
+          "لوحة تحكم كاملة للإدارة (Admin Panel) لمتابعة وتحديث حالات الطلبات وطباعة الفواتير حرارياً",
+          "لوحة عمليات وتحليلات للمدير (Manager Dashboard) لمراقبة المبيعات ومؤشرات الأرباح ومخطط الذروة"
         ],
         en: [
           "Live interactive menu with real-time category filtering",
           "Smart dynamic cart calculating subtotals, tax, and delivery instantly",
           "Seamless WhatsApp order dispatching with formatted receipts and customer location",
           "Instant online table reservation system with guest and branch selection",
-          "100% responsive mobile-first UI delivering a native app feel"
+          "Comprehensive Admin Dashboard for live order management, status updates & receipt printing",
+          "Executive Manager Dashboard featuring sales trends, profit KPIs, and hourly peak analysis"
         ]
       },
       images: [
@@ -128,6 +130,16 @@ export default function WorksSection({ lang, isEnglish, language }) {
           src: "/projects/restaurant/features.jpg",
           ar: "تتبع أوردرك مباشرة", 
           en: "Live Order Tracking" 
+        },
+        { 
+          src: "/projects/restaurant/admin.jpg",
+          ar: "لوحة تحكم الإدارة (Admin Panel) - إدارة الطلبات النشطة والفواتير", 
+          en: "Admin Dashboard - Real-time Orders & Receipts" 
+        },
+        { 
+          src: "/projects/restaurant/manager.jpg",
+          ar: "لوحة المدير التنفيذي (Manager Dashboard) - مؤشرات الأرباح والعمليات", 
+          en: "Manager Operations - Sales Analytics & Financial KPIs" 
         }
       ]
     },
@@ -237,53 +249,53 @@ export default function WorksSection({ lang, isEnglish, language }) {
     },
     { 
       id: 4, 
-      liveUrl: 'https://zeronegroup-gym.zeronegroup0.workers.dev/',
-      title: { ar: "نادي وأكاديمية زيرو ون للجيم والفنون القتالية", en: "Zerone Group Gym | Premium Fitness & Martial Arts" }, 
-      subtitle: { ar: "منصة حجز اشتراكات الجيم وصالات السيدات والزومبا والأكاديميات القتالية", en: "Elite Fitness Club, Private Women's Gym & Combat Arts Platform" }, 
+      liveUrl: 'https://zeronegroup-gym-v1.zeronegroup0.workers.dev/',
+      title: { ar: "نادي وأكاديمية زيرو ون للجيم والفنون القتالية", en: "ZERO-ONE GROUP | Gym & Combat Arts (Defy Gravity)" }, 
+      subtitle: { ar: "صالة رفع أثقال متقدمة، استوديو سيدات خاص، قفص قتالي للفنون المختلطة، وعضويات رقمية", en: "Elite Powerlifting Facility, Women's Studio, MMA Octagon & Digital Memberships" }, 
       desc: { 
-        ar: "موقع سينمائي فخم وشامل لأكبر مركز رياضي وفنون قتالية، بيعرض صالات كمال الأجسام ورفع الأثقال للرجال (Raw Strength)، وصالات السيدات الخاصة بخصوصية تامة (Empower & Tone)، مع حصص الزومبا الإيقاعية الحماسية، وأكاديميات الفنون القتالية الاحترافية (MMA في القفص الثماني، كونغ فو، وجوجيتسو)، ونظام اشتراك وشراء عضويات أونلاين بضغطة زرار.", 
-        en: "A cinematic, dark-aesthetic fitness and combat arts platform showcasing dedicated men's powerlifting zones, private women's resistance studios, high-octane Zumba classes, and an authentic MMA octagon with instant online membership checkout." 
+        ar: "منصة رياضية وقتالية متكاملة تحت شعار (DEFY GRAVITY) بتصميم سينمائي مظلم فخم ونيون ناري، بتعرض أحدث مساحات التدريب من حديد للرجال (Raw Strength)، صالة المقاومة الخاصة بالسيدات (Empower & Tone)، حصص الزومبا والكارديو الحماسية، وأكاديميات الفنون القتالية المتخصصة (MMA في القفص الثماني، الجوجيتسو، والكونغ فو)، مع استعراض باقات العضويات والاشتراكات السنوية والشهرية والحجز الفوري.", 
+        en: "An elite, dark-aesthetic fitness and combat arts portal (Defy Gravity) featuring men's raw powerlifting stations, private women's resistance zones, high-intensity cardio & Zumba, and dedicated martial arts dojos (MMA octagon, Jujutsu, and Kung Fu) with transparent membership tiers." 
       },
       value: {
-        ar: "الفئة المستهدفة: الرياضيون وعشاق الفتنس والحديد، السيدات الباحثات عن صالات خاصة وخصوصية تامة، ومحبو الفنون القتالية والدفاع عن النفس. القيمة المحققة: زيادة بنسبة 55% في حجوزات وتجديد العضويات أونلاين، وضوح تام لكل أسعار ومواعيد الحصص بدون زحمة الاستقبال، وتجربة رياضية ملهمة ومحفزة تليق بأقوى براند رياضي.",
-        en: "Target Audience: Athletes, powerlifters, women seeking private fitness spaces, and martial artists. Delivered Value: Drives 55%+ growth in new memberships, provides 24/7 transparent class schedules, and establishes an elite dark-themed fitness identity."
+        ar: "الفئة المستهدفة: عشاق الحديد واللياقة البدنية، السيدات الباحثات عن صالة رياضية خاصة 100%، ومقاتلو الفنون القتالية. القيمة المحققة: زيادة بنسبة 60% في الاشتراكات والعضويات عبر الموقع، عرض واضح لكافة الباقات دون إرهاق موظفي الاستقبال، وبناء هوية رياضية احترافية قوية ترسخ الثقة وتجذب المتدربين الجادين.",
+        en: "Target Audience: Dedicated lifters, women requiring fully private fitness spaces, and combat athletes. Delivered Value: 60%+ surge in direct member acquisitions, zero front-desk overhead with transparent online pricing, and a fierce, high-impact athletic branding."
       },
       features: {
         ar: [
-          "صالات جيم منفصلة ومجهزة بأحدث الأجهزة: قسم الرجال للحديد وقسم السيدات الخاص بالكامل",
-          "أكاديميات قتالية متكاملة تشمل قفص الـ MMA الثماني، الكونغ فو التقليدي، والجوجيتسو",
-          "جدول حصص الزومبا الإيقاعية وحرق الدهون مع حجز فوري للحصص أونلاين",
-          "شراء العضويات وتفعيل الاشتراكات مباشرة بنظام شيك أوت آمن وسهل (Checkout)",
-          "تصميم سينمائي داكن (Dark Aesthetic) فخم وسريع جداً على جميع الموبايلات"
+          "مساحات تدريب متخصصة: صالة رفع الأثقال الثقيلة للرجال، واستوديو المقاومة الخاص بالسيدات",
+          "أكاديميات فنون قتالية احترافية تضم القفص الثماني (MMA Octagon)، الجوجيتسو الياباني، والكونغ فو",
+          "برامج تدريب الكارديو والزومبا الإيقاعية لحرق الدهون وبناء اللياقة العالية",
+          "عرض شفاف لباقات العضوية الشهرية، الـ 6 شهور، والسنوية مع المزايا والحصص الإضافية",
+          "واجهة سينمائية داكنة (Dark Neon) تفاعلية وسريعة جداً مع دعم كامل للتصفح باللغتين"
         ],
         en: [
-          "Dedicated multi-zone facilities: Men's Raw Strength & fully private Empower women's gym",
-          "Professional combat disciplines featuring full-size MMA cage, Kung Fu, and Jujutsu tatami",
-          "Dynamic high-energy Zumba class schedules with 1-click booking",
-          "Direct membership purchase and digital checkout onboarding",
-          "Cinematic dark aesthetic with ultra-responsive mobile performance"
+          "Dedicated training zones: Men's Raw Powerlifting & 100% Private Women's Resistance studio",
+          "Professional combat arts dojo featuring full-size MMA cage, Jujutsu tatami, and Kung Fu mechanics",
+          "High-energy rhythm Zumba & metabolic conditioning classes",
+          "Transparent 1-month, 6-month, and 1-year membership tiers with VIP perks",
+          "Cinematic dark neon interface optimized for blazing-fast mobile performance"
         ]
       },
       images: [
         { 
           src: "/projects/gym/hero.jpg",
-          ar: "الواجهة الرئيسية وتحدي التدريب", 
-          en: "Hero Banner & Overview" 
+          ar: "الواجهة الرئيسية وشعار التحدي (Defy Gravity)", 
+          en: "Hero Banner & Defy Gravity Challenge" 
         },
         { 
           src: "/projects/gym/facilities.jpg",
-          ar: "صالات الجيم للرجال والسيدات", 
-          en: "Raw Strength & Women's Gym" 
+          ar: "صالات التدريب للرجال ومساحات السيدات الخاصة", 
+          en: "Men's Powerlifting & Women's Studio" 
         },
         { 
           src: "/projects/gym/martial_arts.jpg",
-          ar: "أكاديميات الفنون القتالية والأوكتاجون", 
-          en: "MMA Octagon & Martial Arts" 
+          ar: "أكاديميات القفص القتالي والجوجيتسو والكونغ فو", 
+          en: "MMA Cage, Jujutsu & Kung Fu Disciplines" 
         },
         { 
           src: "/projects/gym/checkout.jpg",
-          ar: "شراء وتفعيل العضوية أونلاين", 
-          en: "Online Membership Checkout" 
+          ar: "باقات وأسعار العضويات والاشتراكات", 
+          en: "Membership Tiers & Pricing Plans" 
         }
       ]
     }
