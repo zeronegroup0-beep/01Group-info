@@ -49,10 +49,8 @@ export default function Portfolio({ lang, isEnglish, language }) {
 
   const categories = [
     { id: 'all', label: { ar: 'الكل', en: 'All' } },
-    { id: 'ecommerce', label: { ar: 'متاجر ومطاعم', en: 'E-Commerce & Food' } },
-    { id: 'education', label: { ar: 'أكاديميات وتدريب', en: 'Academies & Training' } },
-    { id: 'internal', label: { ar: 'أنظمة ولوحات تحكم', en: 'Dashboards & Systems' } },
-    { id: 'automation', label: { ar: 'حلول الذكاء والأتمتة', en: 'AI & Automation' } }
+    { id: 'ecommerce', label: { ar: 'متاجر ومطاعم', en: 'E-Commerce & Dining' } },
+    { id: 'education', label: { ar: 'نوادي وأكاديميات', en: 'Clubs & Academies' } }
   ];
 
   // Translation Dictionary
@@ -192,83 +190,107 @@ export default function Portfolio({ lang, isEnglish, language }) {
     },
     { 
       id: 3, 
-      categoryKey: 'internal',
-      liveUrl: 'https://example.com/fintech-demo',
-      title: { ar: "لوحة تحكم التكنولوجيا المالية", en: "Fintech Real-time Dashboard" }, 
-      subtitle: { ar: "منظومة سحابية متقدمة لمتابعة السيولة وتحليل العمليات", en: "Real-time Financial Operations & Analytics" }, 
+      categoryKey: 'ecommerce',
+      liveUrl: 'https://zerone-e-commerce.zeronegroup0.workers.dev/',
+      title: { ar: "متجر ومصنع زيرو ون للأقطان والملابس", en: "Zerone Cotton | E-Commerce & B2B Apparel" }, 
+      subtitle: { ar: "منصة تجارة إلكترونية متكاملة للقطاعين (B2C & B2B) وتوريد الملابس القطنية", en: "Omnichannel Fashion E-Commerce & B2B Wholesale Apparel Portal" }, 
       desc: { 
-        ar: "سيستم إداري متكامل للشركات والمؤسسات المالية بيجمع كل العمليات الحسابية، التحويلات، وفواتير العملاء في شاشة واحدة لحظة بلحظة مع تقارير ذكية دقيقة.", 
-        en: "A unified enterprise dashboard aggregating transactions, real-time liquidity streams, and automated fiscal reporting." 
+        ar: "منصة تجارة إلكترونية متطورة وشاملة لمصنع ملابس قطنية مصرية فاخرة (100% قطن مصري نقي)، بتجمع بين متجر تجزئة عصري للزبائن (B2C) لشراء البوكسرات، السراويل، والفانلات مع سلة تسوق وشيك أوت فوري، وبوابة مخصصة لطلبات الجملة وعقود التوريد (B2B) وتصنيع البراند الخاص (Private Label) مع شحن وتغطية لـ 27 محافظة ودعم طرق دفع إلكترونية وفودافون كاش وإنستاباي والدفع عند الاستلام.", 
+        en: "A high-performance e-commerce platform for a premier 100% Egyptian cotton apparel manufacturer, integrating an intuitive B2C retail storefront with dynamic cart checkout, alongside a dedicated B2B wholesale portal for custom contracts, private labeling, and nationwide delivery." 
       },
       value: {
-        ar: "الفئة المستهدفة: الشركات الناشئة والمؤسسات اللي عندها حجم معاملات يومية ضخم. القيمة المحققة: توفير 70% من وقت إعداد التقارير المالية، كشف فوري لأي حركة مشبوهة، وتحكم كامل في الصلاحيات وإدارة الكاش.",
-        en: "Delivered Value: Cuts financial reporting time by 70%, provides instant anomaly detection, and ensures bank-grade transaction auditing."
+        ar: "الفئة المستهدفة: المشترون الأفراد الباحثون عن قطن مصري فاخر ومريح، وتجار الملابس وأصحاب البراندات الراغبون في تصنيع علاماتهم الخاصة (Private Label). القيمة المحققة: مضاعفة المبيعات المباشرة وتوفير عمولات المنصات الوسيطة، إغلاق صفقات التوريد والجملة بنقرة واحدة، وبناء ثقة قوية في الجودة والمقاسات بالضمان الكامل.",
+        en: "Target Audience: Retail consumers seeking premium cotton apparel and fashion retailers seeking direct manufacturer supply. Delivered Value: Eliminates third-party marketplace fees, doubles direct sales conversions, and accelerates wholesale RFQ turnaround."
       },
       features: {
         ar: [
-          "متابعة حية للتحويلات والسيولة على مدار الساعة",
-          "تقارير مالية فورية بصيغ PDF و Excel قابلة للتخصيص",
-          "نظام صلاحيات متقدم وأمان مشدد لحماية بيانات العملاء",
-          "ربط مباشر مع بوابات الدفع والبنوك عبر الـ APIs"
+          "متجر تجزئة B2C متكامل مع فلاتر سريعة وتحديد المقاسات والألوان وسلة تسوق ذكية",
+          "بوابة B2B مخصصة لعقود التوريد وحساب تخفيضات الكميات وتصنيع البراند الخاص (Private Label)",
+          "شيك أوت سريع يدعم بوابات الدفع الإلكتروني (فيزا، كاش، إنستاباي) والدفع كاش عند الاستلام",
+          "نظام تتبع فوري لمسار تجهيز وشحن الطلبية برقم تتبع خاص لكل عميل في 27 محافظة",
+          "استعراض معايير الجودة والقص الآلي الألماني فائق الدقة (CNC & Laser) لضمان ثبات المقاسات"
         ],
         en: [
-          "Live real-time liquidity and transaction monitoring stream",
-          "Instant customizable reporting exported directly to PDF & Excel",
-          "Granular role-based access control with bank-level encryption",
-          "Direct API integration with leading regional payment gateways"
+          "Feature-packed B2C storefront with instant filtering, size/color pickers, and smart cart",
+          "Dedicated B2B portal for volume pricing, wholesale orders, and private label contracts",
+          "Multi-option frictionless checkout supporting credit cards, InstaPay, mobile wallets, and COD",
+          "Real-time order fulfillment & dispatch tracking across 27 governorates",
+          "Detailed showcase of German CNC laser-cutting precision and ISO-certified fabric quality"
         ]
       },
       images: [
         { 
-          src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-          ar: "الشاشة الرئيسية لمتابعة التدفقات المالية", 
-          en: "Main Financial Flow Overview" 
+          src: "/projects/ecommerce/hero.jpg",
+          ar: "الواجهة الرئيسية ومميزات المصنع", 
+          en: "Factory Hero & Overview" 
         },
         { 
-          src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-          ar: "تحليل العمليات والتقارير الشهرية", 
-          en: "Transaction Analytics & Monthly Reports" 
+          src: "/projects/ecommerce/store.jpg",
+          ar: "متجر التجزئة وقائمة المنتجات", 
+          en: "B2C Retail Store & Products" 
+        },
+        { 
+          src: "/projects/ecommerce/b2b.jpg",
+          ar: "بوابة عقود التوريد والجملة (B2B)", 
+          en: "B2B Wholesale & Contracts" 
+        },
+        { 
+          src: "/projects/ecommerce/features.jpg",
+          ar: "إمكانيات الجودة والقص الآلي", 
+          en: "Precision CNC Cutting & Quality" 
         }
       ]
     },
     { 
       id: 4, 
-      categoryKey: 'automation',
-      liveUrl: 'https://example.com/ai-demo',
-      title: { ar: "منصة أتمتة العمليات بالذكاء الاصطناعي", en: "AI Process Automation Suite" }, 
-      subtitle: { ar: "أتمتة خدمة العملاء وإدارة المهام الروتينية بذكاء", en: "Intelligent Workflow & CRM Automation" }, 
+      categoryKey: 'education',
+      liveUrl: 'https://zeronegroup-gym.zeronegroup0.workers.dev/',
+      title: { ar: "نادي وأكاديمية زيرو ون للجيم والفنون القتالية", en: "Zerone Group Gym | Premium Fitness & Martial Arts" }, 
+      subtitle: { ar: "منصة حجز اشتراكات الجيم وصالات السيدات والزومبا والأكاديميات القتالية", en: "Elite Fitness Club, Private Women's Gym & Combat Arts Platform" }, 
       desc: { 
-        ar: "حل برمجي ذكي بيربط خدمة العملاء والـ CRM بالذكاء الاصطناعي، بيرد على استفسارات الزباين فوراً 24/7 ويحلل طلباتهم ويحولها لمهام ومبيعات مؤكدة أوتوماتيك.", 
-        en: "An enterprise AI workflow platform integrating CRM and customer messaging to automate replies, categorize leads, and resolve routine support tickets." 
+        ar: "موقع سينمائي فخم وشامل لأكبر مركز رياضي وفنون قتالية، بيعرض صالات كمال الأجسام ورفع الأثقال للرجال (Raw Strength)، وصالات السيدات الخاصة بخصوصية تامة (Empower & Tone)، مع حصص الزومبا الإيقاعية الحماسية، وأكاديميات الفنون القتالية الاحترافية (MMA في القفص الثماني، كونغ فو، وجوجيتسو)، ونظام اشتراك وشراء عضويات أونلاين بضغطة زرار.", 
+        en: "A cinematic, dark-aesthetic fitness and combat arts platform showcasing dedicated men's powerlifting zones, private women's resistance studios, high-octane Zumba classes, and an authentic MMA octagon with instant online membership checkout." 
       },
       value: {
-        ar: "الفئة المستهدفة: الشركات اللي بتستقبل مئات الرسايل يومياً ومحتاجة تقلل تكلفة خدمة العملاء. القيمة المحققة: رد في أقل من 5 ثواني على مدار اليوم، تقليل الضغط على فريق الدعم بنسبة 65%، ومضاعفة المبيعات المحولة.",
-        en: "Delivered Value: Under 5-second 24/7 response time, 65% drop in manual support tickets, and doubled conversion rate for qualified leads."
+        ar: "الفئة المستهدفة: الرياضيون وعشاق الفتنس والحديد، السيدات الباحثات عن صالات خاصة وخصوصية تامة، ومحبو الفنون القتالية والدفاع عن النفس. القيمة المحققة: زيادة بنسبة 55% في حجوزات وتجديد العضويات أونلاين، وضوح تام لكل أسعار ومواعيد الحصص بدون زحمة الاستقبال، وتجربة رياضية ملهمة ومحفزة تليق بأقوى براند رياضي.",
+        en: "Target Audience: Athletes, powerlifters, women seeking private fitness spaces, and martial artists. Delivered Value: Drives 55%+ growth in new memberships, provides 24/7 transparent class schedules, and establishes an elite dark-themed fitness identity."
       },
       features: {
         ar: [
-          "شات بوت ذكي بيفهم اللهجة المصرية والعربية بطلاقة",
-          "ربط أوتوماتيك مع الواتساب، فيسبوك، وإنستجرام",
-          "لوحة تحكم مركزية لمتابعة محادثات العملاء ومعدل التحويل",
-          "أتمتة إدخال البيانات في الـ CRM بدون أي تدخل بشري"
+          "صالات جيم منفصلة ومجهزة بأحدث الأجهزة: قسم الرجال للحديد وقسم السيدات الخاص بالكامل",
+          "أكاديميات قتالية متكاملة تشمل قفص الـ MMA الثماني، الكونغ فو التقليدي، والجوجيتسو",
+          "جدول حصص الزومبا الإيقاعية وحرق الدهون مع حجز فوري للحصص أونلاين",
+          "شراء العضويات وتفعيل الاشتراكات مباشرة بنظام شيك أوت آمن وسهل (Checkout)",
+          "تصميم سينمائي داكن (Dark Aesthetic) فخم وسريع جداً على جميع الموبايلات"
         ],
         en: [
-          "Dialect-aware conversational AI responding fluently to client queries",
-          "Omnichannel auto-sync across WhatsApp, Facebook, and Instagram",
-          "Centralized dashboard tracking resolution metrics and sales conversions",
-          "Zero-touch automated data entry syncing into existing CRMs"
+          "Dedicated multi-zone facilities: Men's Raw Strength & fully private Empower women's gym",
+          "Professional combat disciplines featuring full-size MMA cage, Kung Fu, and Jujutsu tatami",
+          "Dynamic high-energy Zumba class schedules with 1-click booking",
+          "Direct membership purchase and digital checkout onboarding",
+          "Cinematic dark aesthetic with ultra-responsive mobile performance"
         ]
       },
       images: [
         { 
-          src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-          ar: "واجهة المحادثات الذكية والرد الآلي", 
-          en: "Smart AI Chat Interface" 
+          src: "/projects/gym/hero.jpg",
+          ar: "الواجهة الرئيسية وتحدي التدريب", 
+          en: "Hero Banner & Overview" 
         },
         { 
-          src: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-          ar: "خريطة تدفق الأتمتة وسير العمل", 
-          en: "Workflow Automation Pipeline" 
+          src: "/projects/gym/facilities.jpg",
+          ar: "صالات الجيم للرجال والسيدات", 
+          en: "Raw Strength & Women's Gym" 
+        },
+        { 
+          src: "/projects/gym/martial_arts.jpg",
+          ar: "أكاديميات الفنون القتالية والأوكتاجون", 
+          en: "MMA Octagon & Martial Arts" 
+        },
+        { 
+          src: "/projects/gym/checkout.jpg",
+          ar: "شراء وتفعيل العضوية أونلاين", 
+          en: "Online Membership Checkout" 
         }
       ]
     }
