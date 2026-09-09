@@ -30,20 +30,17 @@ export default function Navbar() {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
       document.body.style.height = '100dvh';
-      document.body.style.touchAction = 'none';
     } else {
       document.body.style.overflow = '';
       document.body.style.height = '';
-      document.body.style.touchAction = '';
     }
     return () => { 
       document.body.style.overflow = '';
       document.body.style.height = '';
-      document.body.style.touchAction = '';
     };
   }, [isMobileMenuOpen]);
 
-  // Prevent swiping/scrolling gestures on the overlay itself
+  // Prevent swiping/scrolling gestures on the backdrop
   const handleTouchMove = (e) => {
     if (isMobileMenuOpen) {
       e.preventDefault();
@@ -170,7 +167,6 @@ export default function Navbar() {
       {/* PORTAL TO BODY: Prevents any parent clipping/transform bugs */}
       {mounted && createPortal(
         <div 
-          onTouchMove={handleTouchMove}
           style={{ 
             position: 'fixed', 
             inset: 0, 
@@ -182,13 +178,13 @@ export default function Navbar() {
             visibility: isMobileMenuOpen ? 'visible' : 'hidden',
             transition: isMobileMenuOpen ? 'visibility 0s' : 'visibility 0s 350ms',
             overflow: 'hidden',
-            touchAction: 'none',
             overscrollBehavior: 'contain'
           }}
         >
           {/* Animated Backdrop */}
           <div 
             onClick={() => setIsMobileMenuOpen(false)}
+            onTouchMove={handleTouchMove}
             style={{
               position: 'fixed',
               inset: 0,
@@ -213,7 +209,8 @@ export default function Navbar() {
               right: isRtl ? 'auto' : 0,
               width: '85%',
               maxWidth: '360px',
-              height: '100vh',
+              height: '100dvh',
+              overflowY: 'auto',
               backgroundColor: '#0a0a0a',
               borderRight: isRtl ? '1px solid #262626' : 'none',
               borderLeft: isRtl ? 'none' : '1px solid #262626',
