@@ -412,7 +412,7 @@ export default function Contact() {
                 {submittedData && (
                   <a
                     href={`https://wa.me/201023412285?text=${encodeURIComponent(
-                      `مرحباً 01 Group، لقد قمت بإرسال تفاصيل مشروعي عبر الموقع:\n- الاسم: ${submittedData.name}\n- الهاتف: ${submittedData.phone}\n- نوع المشروع: ${submittedData.serviceLabel}\n- الميزانية: ${submittedData.budgetLabel}\n- التفاصيل: ${submittedData.message}`
+                      `مرحباً 01 Group، لقد قمت بإرسال تفاصيل مشروعي عبر الموقع:\n- الاسم: ${submittedData.name}\n- البريد الإلكتروني: ${submittedData.email}\n- الهاتف: ${submittedData.phone}\n- نوع المشروع: ${submittedData.serviceLabel}\n- الميزانية: ${submittedData.budgetLabel}\n- التفاصيل: ${submittedData.message}`
                     )}`}
                     target="_blank"
                     rel="noreferrer"
@@ -452,7 +452,7 @@ export default function Contact() {
                 {submittedData && (
                   <a
                     href={`https://wa.me/201023412285?text=${encodeURIComponent(
-                      `مرحباً 01 Group، لقد قمت بإرسال تفاصيل مشروعي عبر الموقع:\n- الاسم: ${submittedData.name}\n- الهاتف: ${submittedData.phone}\n- نوع المشروع: ${submittedData.serviceLabel}\n- الميزانية: ${submittedData.budgetLabel}\n- التفاصيل: ${submittedData.message}`
+                      `مرحباً 01 Group، لقد قمت بإرسال تفاصيل مشروعي عبر الموقع:\n- الاسم: ${submittedData.name}\n- البريد الإلكتروني: ${submittedData.email}\n- الهاتف: ${submittedData.phone}\n- نوع المشروع: ${submittedData.serviceLabel}\n- الميزانية: ${submittedData.budgetLabel}\n- التفاصيل: ${submittedData.message}`
                     )}`}
                     target="_blank"
                     rel="noreferrer"

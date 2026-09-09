@@ -378,7 +378,7 @@ export default function Footer() {
               {submittedData && (
                 <a
                   href={`https://wa.me/201023412285?text=${encodeURIComponent(
-                    `مرحباً 01 Group، أرسلت طلباً عبر الموقع:\n- الاسم: ${submittedData.name}\n- الهاتف: ${submittedData.phone}\n- الميزانية: ${submittedData.budget}\n- الرسالة: ${submittedData.message}`
+                    `مرحباً 01 Group، أرسلت طلباً عبر الموقع:\n- الاسم: ${submittedData.name}\n- البريد الإلكتروني: ${submittedData.email}\n- الهاتف: ${submittedData.phone}\n- الميزانية: ${submittedData.budget}\n- الرسالة: ${submittedData.message}`
                   )}`}
                   target="_blank"
                   rel="noreferrer"
@@ -417,7 +417,7 @@ export default function Footer() {
               {submittedData && (
                 <a
                   href={`https://wa.me/201023412285?text=${encodeURIComponent(
-                    `مرحباً 01 Group، أرسلت طلباً عبر الموقع:\n- الاسم: ${submittedData.name}\n- الهاتف: ${submittedData.phone}\n- الميزانية: ${submittedData.budget}\n- الرسالة: ${submittedData.message}`
+                    `مرحباً 01 Group، أرسلت طلباً عبر الموقع:\n- الاسم: ${submittedData.name}\n- البريد الإلكتروني: ${submittedData.email}\n- الهاتف: ${submittedData.phone}\n- الميزانية: ${submittedData.budget}\n- الرسالة: ${submittedData.message}`
                   )}`}
                   target="_blank"
                   rel="noreferrer"
