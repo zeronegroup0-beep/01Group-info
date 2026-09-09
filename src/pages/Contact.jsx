@@ -97,7 +97,8 @@ export default function Contact() {
       "الميزانية المتوقعة": bLabel,
       "تفاصيل المشروع": formData.message,
       _subject: `طلب مشروع جديد: ${formData.name} (${formData.phone})`,
-      _template: 'table'
+      _template: 'table',
+      _captcha: 'false'
     };
 
     try {
@@ -110,7 +111,9 @@ export default function Contact() {
         body: JSON.stringify(payload)
       });
 
-      if (res.ok) {
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && (data.success === true || data.success === 'true')) {
         setSubmitStatus('success');
         setSubmittedData({ ...formData, serviceLabel: sLabel, budgetLabel: bLabel });
         setFormData({
@@ -121,8 +124,11 @@ export default function Contact() {
           budget: '',
           message: ''
         });
+      } else if (data.message && (data.message.includes('Activation') || data.message.includes('actived') || data.message.includes('Activate'))) {
+        setSubmitStatus('activation_required');
+        setSubmittedData({ ...formData, serviceLabel: sLabel, budgetLabel: bLabel });
       } else {
-        throw new Error('Submission failed');
+        throw new Error(data.message || 'Submission failed');
       }
     } catch (err) {
       console.error('Submission error:', err);
@@ -417,6 +423,46 @@ export default function Contact() {
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
                     <span>{activeLang === 'ar' ? 'تأكيد الرسالة فوراً عبر واتساب 💬' : 'Confirm via WhatsApp 💬'}</span>
+                  </a>
+                )}
+              </div>
+            )}
+
+            {/* One-Time Email Activation Required Alert */}
+            {submitStatus === 'activation_required' && (
+              <div 
+                style={{
+                  marginTop: '1.5rem',
+                  padding: '1.5rem',
+                  borderRadius: '16px',
+                  backgroundColor: 'rgba(234, 179, 8, 0.08)',
+                  border: '1px solid rgba(234, 179, 8, 0.4)',
+                  boxShadow: '0 8px 32px rgba(234, 179, 8, 0.1)',
+                  textAlign: 'center'
+                }}
+              >
+                <div style={{ fontWeight: 700, fontSize: '1.15rem', color: '#facc15', marginBottom: '0.6rem' }}>
+                  {activeLang === 'ar' ? '⚠️ مطلوب تفعيل بريدك الإلكتروني لمرة واحدة فقط!' : '⚠️ One-Time Activation Required!'}
+                </div>
+                <p style={{ fontSize: '0.95rem', color: '#fef08a', marginBottom: '1.25rem', lineHeight: '1.6' }}>
+                  {activeLang === 'ar' 
+                    ? 'تم إرسال رابط تأكيد من خدمة FormSubmit إلى بريدك zeronegroup0@gmail.com. يرجى فتح البريد (وتفقد مجلد Spam إذا لزم) والضغط على زر "Activate Form". بمجرد الضغط عليه، سيتم استلام كل الرسائل القادمة تلقائياً وفورياً!' 
+                    : 'A confirmation link has been sent to zeronegroup0@gmail.com. Please open your inbox (or Spam) and click "Activate Form" once to activate direct email delivery.'}
+                </p>
+                {submittedData && (
+                  <a
+                    href={`https://wa.me/201023412285?text=${encodeURIComponent(
+                      `مرحباً 01 Group، لقد قمت بإرسال تفاصيل مشروعي عبر الموقع:\n- الاسم: ${submittedData.name}\n- الهاتف: ${submittedData.phone}\n- نوع المشروع: ${submittedData.serviceLabel}\n- الميزانية: ${submittedData.budgetLabel}\n- التفاصيل: ${submittedData.message}`
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="direct-contact-btn whatsapp-btn"
+                    style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', gap: '8px', padding: '0.75rem 1.5rem', textDecoration: 'none' }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    <span>{activeLang === 'ar' ? 'إرسال التفاصيل عبر واتساب الآن لحين التفعيل 💬' : 'Send via WhatsApp now 💬'}</span>
                   </a>
                 )}
               </div>

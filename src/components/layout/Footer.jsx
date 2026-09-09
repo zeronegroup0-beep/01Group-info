@@ -88,7 +88,8 @@ export default function Footer() {
       "الميزانية المتوقعة": data.budget,
       "تفاصيل المشروع": data.message,
       _subject: `طلب تواصل جديد من موقع 01 Group: ${data.name} (${data.phone})`,
-      _template: 'table'
+      _template: 'table',
+      _captcha: 'false'
     };
 
     try {
@@ -101,13 +102,18 @@ export default function Footer() {
         body: JSON.stringify(payload)
       });
 
-      if (res.ok) {
+      const result = await res.json().catch(() => ({}));
+
+      if (res.ok && (result.success === true || result.success === 'true')) {
         setSubmitStatus('success');
         setSubmittedData(data);
         form.reset();
         setBudgetVal('');
+      } else if (result.message && (result.message.includes('Activation') || result.message.includes('actived') || result.message.includes('Activate'))) {
+        setSubmitStatus('activation_required');
+        setSubmittedData(data);
       } else {
-        throw new Error('Submission failed');
+        throw new Error(result.message || 'Submission failed');
       }
     } catch (err) {
       console.error('Footer form submission error:', err);
@@ -383,6 +389,45 @@ export default function Footer() {
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
                   <span>{isRtl ? 'متابعة عبر واتساب 💬' : 'Follow up on WhatsApp 💬'}</span>
+                </a>
+              )}
+            </div>
+          )}
+
+          {/* One-Time Activation Required Alert */}
+          {submitStatus === 'activation_required' && (
+            <div 
+              style={{
+                marginTop: '1rem',
+                padding: '1.25rem',
+                borderRadius: '12px',
+                backgroundColor: 'rgba(234, 179, 8, 0.08)',
+                border: '1px solid rgba(234, 179, 8, 0.4)',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ fontWeight: 700, fontSize: '1.05rem', color: '#facc15', marginBottom: '0.4rem' }}>
+                {isRtl ? '⚠️ خطوة أخيرة لتفعيل استلام الرسائل!' : '⚠️ One-Time Activation Required!'}
+              </div>
+              <p style={{ fontSize: '0.9rem', color: '#fef08a', marginBottom: '1rem', lineHeight: '1.5' }}>
+                {isRtl 
+                  ? 'وصلت رسالة تأكيد إلى zeronegroup0@gmail.com. يرجى الضغط على زر "Activate Form" لتفعيل استلام جميع الرسائل القادمة تلقائياً.' 
+                  : 'Please check zeronegroup0@gmail.com and click "Activate Form" once.'}
+              </p>
+              {submittedData && (
+                <a
+                  href={`https://wa.me/201023412285?text=${encodeURIComponent(
+                    `مرحباً 01 Group، أرسلت طلباً عبر الموقع:\n- الاسم: ${submittedData.name}\n- الهاتف: ${submittedData.phone}\n- الميزانية: ${submittedData.budget}\n- الرسالة: ${submittedData.message}`
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="direct-contact-btn whatsapp-btn"
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', gap: '8px', padding: '0.6rem 1.25rem', textDecoration: 'none' }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>{isRtl ? 'إرسال عبر واتساب الآن 💬' : 'Send via WhatsApp now 💬'}</span>
                 </a>
               )}
             </div>
