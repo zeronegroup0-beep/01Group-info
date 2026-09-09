@@ -1159,29 +1159,51 @@ html[dir='"rtl"'] .nav-links a:not(.btn):after {
   transform: translate(-50%, -50%) scale(1.1);
 }
 .stats-container {
-  display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 3.5rem !important;
+  margin: 3rem auto 0 !important;
+  padding-top: 2.5rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  width: 100% !important;
+  max-width: 650px !important;
 }
 .stat-item {
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  flex: 1 !important;
+}
+.stat-number-wrapper {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  justify-content: center !important;
+  direction: ltr !important;
 }
 .stat-number {
-  font-family: Syne, sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--accent-primary);
-  line-height: 1.1;
+  font-family: var(--font-heading, Syne), sans-serif !important;
+  font-size: 2.75rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-primary, #ffffff) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
 }
 .stat-label {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 0.25rem;
+  font-size: 0.95rem !important;
+  color: var(--text-secondary, #a3a3a3) !important;
+  letter-spacing: 0.5px !important;
+  margin-top: 0.4rem !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    padding-top: 2rem !important;
+  }
 }
 .portfolio-filters {
   display: flex;
@@ -2596,48 +2618,62 @@ section.container,
   width: 100% !important;
   min-height: 480px !important;
   height: 100% !important;
-  gap: 12px !important;
+  gap: 16px !important;
   overflow: hidden !important;
   position: relative !important;
   flex-direction: row !important;
+  box-sizing: border-box !important;
 }
 @media (max-width: 991px) {
   .services-grid {
     flex-direction: column !important;
     height: auto !important;
+    min-height: 0 !important;
+    gap: 16px !important;
   }
 }
 .service-card,
 .card {
-  flex: 1 !important;
-  transition: flex 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  flex: 1 1 0% !important;
+  width: 33.333% !important;
+  min-width: 0 !important;
+  transition: flex 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, border-color 0.3s ease !important;
   overflow: hidden !important;
   position: relative !important;
   box-sizing: border-box !important;
   margin: 0 !important;
-  max-width: none !important;
   animation: none !important;
   border-radius: 20px !important;
 }
-.service-card:not(.expanded) {
+@media (max-width: 991px) {
+  .service-card,
+  .card {
+    width: 100% !important;
+    flex: none !important;
+  }
+}
+.service-card:not(.expanded):not(.is-active) {
   min-width: 0 !important;
 }
 @media (min-width: 992px) {
-  .service-card.expanded {
-    flex: 8 !important;
+  .service-card.expanded,
+  .service-card.is-active {
+    flex: 5 !important;
+    width: auto !important;
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 32px !important;
     align-items: start !important;
     padding-top: 60px !important;
   }
-  .services-grid.has-expanded .service-card:not(.expanded) {
-    flex: 0.8 !important;
+  .services-grid.has-expanded .service-card:not(.expanded):not(.is-active) {
+    flex: 1 !important;
+    width: auto !important;
     cursor: pointer !important;
     opacity: 0.6 !important;
     pointer-events: auto !important;
   }
-  .services-grid.has-expanded .service-card:not(.expanded):hover {
+  .services-grid.has-expanded .service-card:not(.expanded):not(.is-active):hover {
     opacity: 0.9 !important;
   }
 }

@@ -14,16 +14,27 @@ export default function ServicesSection() {
   const handleExpand = (e) => {
     const card = e.currentTarget.closest('.service-card');
     if (!card) return;
-    const isActive = card.classList.contains('is-active');
+    const isExpanded = card.classList.contains('expanded') || card.classList.contains('is-active');
+    const grid = card.closest('.services-grid');
     // Close all
-    document.querySelectorAll('.service-card').forEach((c) => c.classList.remove('is-active'));
+    document.querySelectorAll('.service-card').forEach((c) => {
+      c.classList.remove('is-active', 'expanded');
+    });
+    if (grid) grid.classList.remove('has-expanded');
     // Toggle clicked
-    if (!isActive) card.classList.add('is-active');
+    if (!isExpanded) {
+      card.classList.add('is-active', 'expanded');
+      if (grid) grid.classList.add('has-expanded');
+    }
   };
 
   const handleClose = (e) => {
     e.stopPropagation();
-    document.querySelectorAll('.service-card').forEach((c) => c.classList.remove('is-active'));
+    document.querySelectorAll('.service-card').forEach((c) => {
+      c.classList.remove('is-active', 'expanded');
+    });
+    const grid = document.getElementById('servicesGrid');
+    if (grid) grid.classList.remove('has-expanded');
   };
 
   return (

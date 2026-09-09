@@ -20,21 +20,8 @@ export const servicesData = [
     ],
   },
   {
-    id: 'mobile',
-    number: '02',
-    titleKey: 'srvcMobileTitle',
-    descKey: 'srvcMobileDesc',
-    contactParam: 'mobile',
-    iconPath: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line>`,
-    benefitText: 'إحنا بنعمل لك تطبيق يشتغل على الآيفون والأندرويد بنعومة وسرعة. تطبيق يخلي تجربة الشراء أسهل ما يمكن، وده بيترجم لمبيعات أكتر.',
-    bullets: [
-      'هتبعت إشعارات وعروض مباشرة لموبايل العميل في جيبه.',
-      'شغال بنعومة وسرعة فائقة على كل أجهزة الآيفون والأندرويد.',
-    ],
-  },
-  {
     id: 'uiux',
-    number: '03',
+    number: '02',
     titleKey: 'srvcUiTitle',
     descKey: 'srvcUiDesc',
     contactParam: 'uiux',
@@ -47,7 +34,7 @@ export const servicesData = [
   },
   {
     id: 'cloud',
-    number: '04',
+    number: '03',
     titleKey: 'srvcCloudTitle',
     descKey: 'srvcCloudDesc',
     contactParam: 'cloud',

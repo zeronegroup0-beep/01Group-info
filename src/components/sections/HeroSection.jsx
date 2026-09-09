@@ -1,15 +1,48 @@
-// ============================================================
-//  src/components/sections/HeroSection.jsx
-//  Hero section — title, subtitle, CTAs, stats counter
-// ============================================================
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLang } from '../../context/LanguageContext';
 
 const STATS = [
-  { target: 150, suffix: '+', labelKey: 'stat1' },
-  { target: 100, suffix: '%', labelKey: 'stat2' },
-  { target: 12,  suffix: '',  labelKey: 'stat3' },
+  { target: 4,  prefix: '+', suffix: '',  labelKey: 'stat1' },
+  { target: 45, prefix: '',  suffix: '%', labelKey: 'stat2' },
+  { target: 2,  prefix: '+', suffix: '',  labelKey: 'stat3' },
 ];
+
+function StatItem({ target, prefix = '', suffix = '', label }) {
+  const [count, setCount] = useState(target);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 1000;
+    const steps = 20;
+    const increment = target / steps;
+    const stepTime = duration / steps;
+
+    setCount(0);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return (
+    <div className="stat-item">
+      <div className="stat-number-wrapper">
+        <span className="stat-number">
+          {prefix}{count}{suffix}
+        </span>
+      </div>
+      <span className="stat-label">{label}</span>
+    </div>
+  );
+}
 
 export default function HeroSection() {
   const { t, lang } = useLang();
@@ -53,16 +86,16 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          {/* Stats */}
-          <div className="stats-container flex flex-col md:flex-row gap-8 items-center w-full" style={{ justifyContent: 'center', maxWidth: '600px', margin: '3rem auto 0', paddingTop: '3rem' }}>
-            {STATS.map(({ target, suffix, labelKey }) => (
-              <div className="stat-item flex flex-col items-center" key={labelKey}>
-                <div>
-                  <span className="stat-number stat-counter" data-target={target}>0</span>
-                  <span className="stat-number">{suffix}</span>
-                </div>
-                <span className="stat-label">{t(labelKey)}</span>
-              </div>
+          {/* Stats: Horizontal on PC, Vertical on Mobile */}
+          <div className="stats-container">
+            {STATS.map(({ target, prefix, suffix, labelKey }) => (
+              <StatItem 
+                key={labelKey}
+                target={target}
+                prefix={prefix}
+                suffix={suffix}
+                label={t(labelKey)}
+              />
             ))}
           </div>
 
