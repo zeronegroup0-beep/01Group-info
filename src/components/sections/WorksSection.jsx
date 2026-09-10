@@ -199,25 +199,25 @@ export default function WorksSection({ lang, isEnglish, language }) {
       id: 3, 
       liveUrl: 'https://zerone-e-commerce.zeronegroup0.workers.dev/',
       title: { ar: "متجر ومصنع زيرو ون للأقطان والملابس", en: "Zerone Cotton | E-Commerce & B2B Apparel" }, 
-      subtitle: { ar: "منصة تجارة إلكترونية متكاملة للقطاعين (B2C & B2B) وتوريد الملابس القطنية", en: "Omnichannel Fashion E-Commerce & B2B Wholesale Apparel Portal" }, 
+      subtitle: { ar: "منصة تجارة إلكترونية متكاملة للقطاعين (B2C & B2B) وتوريد الملابس الكاجوال والقطنية", en: "Omnichannel Fashion E-Commerce & B2B Wholesale Apparel Portal" }, 
       desc: { 
-        ar: "منصة تجارة إلكترونية متطورة وشاملة لمصنع ملابس قطنية مصرية فاخرة (100% قطن مصري نقي)، بتجمع بين متجر تجزئة عصري للزبائن (B2C) لشراء البوكسرات، السراويل، والفانلات مع سلة تسوق وشيك أوت فوري، وبوابة مخصصة لطلبات الجملة وعقود التوريد (B2B) وتصنيع البراند الخاص (Private Label) مع شحن وتغطية لـ 27 محافظة ودعم طرق دفع إلكترونية وفودافون كاش وإنستاباي والدفع عند الاستلام.", 
-        en: "A high-performance e-commerce platform for a premier 100% Egyptian cotton apparel manufacturer, integrating an intuitive B2C retail storefront with dynamic cart checkout, alongside a dedicated B2B wholesale portal for custom contracts, private labeling, and nationwide delivery." 
+        ar: "منصة تجارة إلكترونية متطورة وشاملة لمصنع ملابس كاجوال وقطنية مصرية فاخرة (100% قطن مصري نقي)، بتجمع بين متجر تجزئة عصري للزبائن (B2C) لشراء أرقى تشكيلات الكاجوال الرجالية (تيشيرتات بولو، قمصان كتان، بناطيل تشينو، وبليزرات إيطالية) مع فلاتر ذكية وسلة تسوق وشيك أوت فوري، وبوابة مخصصة لطلبات الجملة وعقود التوريد (B2B) وتصنيع البراند الخاص (Private Label) مع شحن وتغطية لـ 27 محافظة ودعم طرق دفع إلكترونية وفودافون كاش وإنستاباي والدفع عند الاستلام.", 
+        en: "A high-performance e-commerce platform for a premier Egyptian cotton & casual wear manufacturer, integrating an intuitive B2C retail storefront for luxury men's casual wear (Polo shirts, linen shirts, chino pants, and casual blazers) with dynamic filtering and instant checkout, alongside a dedicated B2B wholesale portal for custom contracts, private labeling, and nationwide delivery." 
       },
       value: {
-        ar: "الفئة المستهدفة: المشترون الأفراد الباحثون عن قطن مصري فاخر ومريح، وتجار الملابس وأصحاب البراندات الراغبون في تصنيع علاماتهم الخاصة (Private Label). القيمة المحققة: مضاعفة المبيعات المباشرة وتوفير عمولات المنصات الوسيطة، إغلاق صفقات التوريد والجملة بنقرة واحدة، وبناء ثقة قوية في الجودة والمقاسات بالضمان الكامل.",
-        en: "Target Audience: Retail consumers seeking premium cotton apparel and fashion retailers seeking direct manufacturer supply. Delivered Value: Eliminates third-party marketplace fees, doubles direct sales conversions, and accelerates wholesale RFQ turnaround."
+        ar: "الفئة المستهدفة: محبو الأناقة الكاجوال والباحثون عن خامات قطنية مصرية فاخرة تدوم طويلاً، وتجار الملابس وأصحاب البراندات الراغبون في تصنيع علاماتهم الخاصة (Private Label). القيمة المحققة: مضاعفة المبيعات المباشرة وتوفير عمولات المنصات الوسيطة، إغلاق صفقات التوريد والجملة بنقرة واحدة، وبناء ثقة قوية في جودة التفصيل والمقاسات بالضمان الكامل.",
+        en: "Target Audience: Modern men seeking premium casual wear with pure Egyptian cotton craftsmanship, and apparel retailers looking for direct factory supply and private labeling. Delivered Value: Eliminates marketplace commissions, drives high conversion rates with visual filtering, and streamlines wholesale volume orders."
       },
       features: {
         ar: [
-          "متجر تجزئة B2C متكامل مع فلاتر سريعة وتحديد المقاسات والألوان وسلة تسوق ذكية",
+          "متجر تجزئة B2C متكامل لملابس الكاجوال مع فلاتر سريعة وتحديد المقاسات والألوان وسلة تسوق ذكية",
           "بوابة B2B مخصصة لعقود التوريد وحساب تخفيضات الكميات وتصنيع البراند الخاص (Private Label)",
           "شيك أوت سريع يدعم بوابات الدفع الإلكتروني (فيزا، كاش، إنستاباي) والدفع كاش عند الاستلام",
           "نظام تتبع فوري لمسار تجهيز وشحن الطلبية برقم تتبع خاص لكل عميل في 27 محافظة",
           "استعراض معايير الجودة والقص الآلي الألماني فائق الدقة (CNC & Laser) لضمان ثبات المقاسات"
         ],
         en: [
-          "Feature-packed B2C storefront with instant filtering, size/color pickers, and smart cart",
+          "Feature-packed B2C storefront for casual wear with instant filtering, size/color pickers, and smart cart",
           "Dedicated B2B portal for volume pricing, wholesale orders, and private label contracts",
           "Multi-option frictionless checkout supporting credit cards, InstaPay, mobile wallets, and COD",
           "Real-time order fulfillment & dispatch tracking across 27 governorates",
@@ -232,8 +232,8 @@ export default function WorksSection({ lang, isEnglish, language }) {
         },
         { 
           src: "/projects/ecommerce/store.jpg",
-          ar: "متجر التجزئة وقائمة المنتجات", 
-          en: "B2C Retail Store & Products" 
+          ar: "متجر ملابس الكاجوال وقائمة المنتجات", 
+          en: "B2C Casual Store & Products" 
         },
         { 
           src: "/projects/ecommerce/b2b.jpg",
