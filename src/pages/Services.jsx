@@ -1,9 +1,10 @@
 // ============================================================
 //  src/pages/Services.jsx
-//  Dedicated services page with hero heading + full services grid
+//  Dedicated services page with hero heading + full services grid + SEO
 // ============================================================
 import { useLang } from '../context/LanguageContext';
 import ServicesSection from '../components/sections/ServicesSection';
+import SEO from '../components/ui/SEO';
 
 export default function Services() {
   const { t, lang } = useLang();
@@ -11,6 +12,12 @@ export default function Services() {
 
   return (
     <>
+      <SEO
+        title={t('seoServicesTitle')}
+        description={t('seoServicesDesc')}
+        canonical="https://01group.online/services"
+        lang={lang}
+      />
       {/* Page hero */}
       <section
         id="services-hero"

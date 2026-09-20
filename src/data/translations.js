@@ -6,6 +6,18 @@
 
 export const translations = {
   ar: {
+    // SEO Meta
+    seoHomeTitle: '01Group | للحلول الرقمية وتطوير المواقع والتطبيقات',
+    seoHomeDesc: 'شريكك التقني لتصميم وتطوير مواقع ومنصات ويب سريعة، وحلول سحابية ذكية متفصلة لنمو أعمالك ومبيعاتك.',
+    seoAboutTitle: 'عن المجموعة | 01Group للحلول الرقمية وهندسة البرمجيات',
+    seoAboutDesc: 'تعرف على فريق ومهندسي 01Group وقيمنا الأساسية في تقديم حلول برمجية متطورة تساند نمو الشركات ورواد الأعمال.',
+    seoServicesTitle: 'خدماتنا الرقمية | برمجة وتطوير المواقع والتطبيقات - 01Group',
+    seoServicesDesc: 'حلول رقمية متكاملة تشمل برمجة وتطوير مواقع الويب، تطبيقات الهواتف الذكية، وتصميم UI/UX وبنية السيرفرات السحابية.',
+    seoPortfolioTitle: 'سابقة أعمالنا | مشاريع برمجية وتطبيقات ويب تفاعلية - 01Group',
+    seoPortfolioDesc: 'استكشف معرض مشاريع وقصص نجاح عملاء 01Group في قطاعات التجارة الإلكترونية، المطاعم، والمنظومات الإدارية.',
+    seoContactTitle: 'تواصل معنا | ابدأ مشروعك الرقمي القادم - 01Group',
+    seoContactDesc: 'تواصل مع فريق 01Group اليوم عبر واتساب أو الهاتف لمناقشة فكرة مشروعك والحصول على استشارة برمجية وعرض سعر مخصص.',
+
     // Navigation
     navHome: 'الرئيسية',
     navAbout: 'عن المجموعة',
@@ -115,6 +127,18 @@ export const translations = {
   },
 
   en: {
+    // SEO Meta
+    seoHomeTitle: '01Group | Scalable Web & Mobile Digital Solutions',
+    seoHomeDesc: 'Partner with 01Group for cutting-edge websites, high-performance web platforms, and smart cloud architectures engineered for rapid growth.',
+    seoAboutTitle: 'About Us | 01Group Digital Innovation & Engineering Team',
+    seoAboutDesc: 'Learn about 01Group\'s journey, engineering culture, and commitment to building impactful software that scales businesses.',
+    seoServicesTitle: 'Our Services | Full-Stack Web, Mobile & Cloud Engineering - 01Group',
+    seoServicesDesc: 'Comprehensive digital services: modern web platforms, iOS & Android apps, UI/UX design, and resilient cloud infrastructure.',
+    seoPortfolioTitle: 'Our Portfolio | Digital Products & Web Application Case Studies - 01Group',
+    seoPortfolioDesc: 'Browse our portfolio of high-impact web apps, e-commerce platforms, and interactive dashboards engineered for rapid scale.',
+    seoContactTitle: 'Contact Us | Start Your Digital Project - 01Group',
+    seoContactDesc: 'Get in touch with 01Group via WhatsApp, phone, or email to discuss your next web or mobile app development project.',
+
     navHome: 'Home',
     navAbout: 'About',
     navServices: 'Services',

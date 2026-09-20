@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLang } from '../context/LanguageContext';
 import ImageLightbox from '../components/ui/ImageLightbox';
+import SEO from '../components/ui/SEO';
 
 export default function Portfolio({ lang, isEnglish, language }) {
   const langContext = useLang();
@@ -344,6 +345,12 @@ export default function Portfolio({ lang, isEnglish, language }) {
       }}
       dir={activeLang === 'ar' ? 'rtl' : 'ltr'}
     >
+      <SEO
+        title={langContext?.t('seoPortfolioTitle')}
+        description={langContext?.t('seoPortfolioDesc')}
+        canonical="https://01group.online/portfolio"
+        lang={activeLang}
+      />
       <div
         style={{
           maxWidth: '1280px',

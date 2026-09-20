@@ -4,6 +4,7 @@
 // ============================================================
 import { useState } from 'react';
 import { useLang } from '../context/LanguageContext';
+import SEO from '../components/ui/SEO';
 
 export default function Contact() {
   const { t, lang } = useLang();
@@ -144,10 +145,17 @@ export default function Contact() {
   };
 
   return (
-    <section
-      className="container "
-      style={{ paddingTop: '15vh', paddingBottom: '5vh' }}
-    >
+    <>
+      <SEO
+        title={t('seoContactTitle')}
+        description={t('seoContactDesc')}
+        canonical="https://01group.online/contact"
+        lang={lang}
+      />
+      <section
+        className="container "
+        style={{ paddingTop: '15vh', paddingBottom: '5vh' }}
+      >
       <div className="contact-split-layout flex flex-col lg:flex-row gap-12 lg:gap-16 w-full">
 
         {/* Left: CTA & Direct Contact */}
@@ -493,5 +501,6 @@ export default function Contact() {
 
       </div>
     </section>
+    </>
   );
 }

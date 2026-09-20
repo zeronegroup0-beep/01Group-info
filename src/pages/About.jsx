@@ -5,19 +5,26 @@
 import { useLang } from '../context/LanguageContext';
 import { coreValues } from '../data/aboutData';
 import SectionTitle from '../components/ui/SectionTitle';
+import SEO from '../components/ui/SEO';
 
 export default function About() {
   const { t, lang } = useLang();
 
   return (
     <>
+      <SEO
+        title={t('seoAboutTitle')}
+        description={t('seoAboutDesc')}
+        canonical="https://01group.online/about"
+        lang={lang}
+      />
       {/* Main Page Title & History & Team */}
       <section className="container " dir={lang === 'ar' ? 'rtl' : 'ltr'} style={{ paddingTop: '15vh', paddingBottom: '10rem', minHeight: '75vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         
         {/* Main Page Header */}
         <div style={{ marginBottom: '4rem', textAlign: lang === 'ar' ? 'right' : 'left' }}>
-          <h1 className="massive-title" style={{ fontSize: '5rem', fontWeight: '800' }}>
-            {t('navAbout')}{lang === 'ar' ? '؟' : '?'}
+          <h1 className="massive-title" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: '800' }}>
+            {lang === 'ar' ? 'عن 01Group للحلول الرقمية' : 'About 01Group Digital'}
           </h1>
         </div>
 

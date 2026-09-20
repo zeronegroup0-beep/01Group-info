@@ -14,7 +14,6 @@ export function LanguageProvider({ children }) {
   useEffect(() => {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    document.title = lang === 'ar' ? '01Group | للحلول الرقمية' : '01Group | Digital Solutions';
   }, [lang]);
 
   const toggleLang = useCallback(() => {
