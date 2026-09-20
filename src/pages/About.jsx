@@ -23,8 +23,8 @@ export default function About() {
         
         {/* Main Page Header */}
         <div style={{ marginBottom: '4rem', textAlign: lang === 'ar' ? 'right' : 'left' }}>
-          <h1 className="massive-title" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: '800' }}>
-            {lang === 'ar' ? 'عن 01Group للحلول الرقمية' : 'About 01Group Digital'}
+          <h1 className="massive-title" style={{ fontSize: 'clamp(3rem, 7vw, 5rem)', fontWeight: '800' }}>
+            {lang === 'ar' ? 'عنّا' : 'About Us'}
           </h1>
         </div>
 
