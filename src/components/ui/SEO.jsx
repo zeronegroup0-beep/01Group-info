@@ -6,13 +6,30 @@ const DEFAULT_IMAGE = 'https://01group.online/og-image-v2.png';
 
 const FALLBACK_METADATA = {
   ar: {
-    title: '01Group | للحلول الرقمية وتطوير المواقع والتطبيقات',
-    description: 'شريكك التقني لتصميم وتطوير مواقع ومنصات ويب سريعة، وحلول سحابية ذكية متفصلة لنمو أعمالك ومبيعاتك.'
+    title: 'زيرو وان جروب | وكالة تصميم وتطوير المواقع والحلول البرمجية',
+    description: 'وكالة زيرو وان جروب (01Group Digital Agency) شريكك التقني لتصميم وتطوير مواقع ومنصات وتطبيقات عبر 01Group Online لنمو مبيعاتك.'
   },
   en: {
-    title: '01Group | Digital Solutions & Web Engineering',
-    description: 'Partner with 01Group for cutting-edge websites, high-performance web platforms, and smart cloud architectures engineered for rapid growth.'
+    title: '01Group | Digital Agency & Custom Web Solutions',
+    description: '01Group Digital Agency (01Group Online) crafts high-performance websites, custom web apps, and digital solutions engineered for rapid business growth.'
   }
+};
+
+const DEFAULT_BRAND_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  'name': '01Group',
+  'alternateName': [
+    'زيرو وان جروب',
+    '01Group Digital Agency'
+  ],
+  'url': 'https://01group.online',
+  'logo': 'https://01group.online/logo.svg',
+  'image': 'https://01group.online/og-image-v2.png',
+  'sameAs': [
+    'https://instagram.com/01Group',
+    'https://wa.me/201023412285'
+  ]
 };
 
 function updateMetaTag(attributeName, attributeValue, content) {
@@ -75,6 +92,7 @@ export default function SEO({
 
   const finalTitle = title || fallback.title;
   const finalDescription = description || fallback.description;
+  const activeSchema = jsonLd || DEFAULT_BRAND_SCHEMA;
 
   // Compute canonical URL safely
   let finalCanonical = canonical;
@@ -104,7 +122,7 @@ export default function SEO({
     updateMetaTag('property', 'og:url', finalCanonical);
     updateMetaTag('property', 'og:type', ogType);
     updateMetaTag('property', 'og:image', ogImage);
-    updateMetaTag('property', 'og:site_name', '01Group');
+    updateMetaTag('property', 'og:site_name', '01Group Digital Agency');
     updateMetaTag('property', 'og:locale', currentLang === 'ar' ? 'ar_EG' : 'en_US');
 
     // 5. Twitter Cards
@@ -115,7 +133,7 @@ export default function SEO({
     updateMetaTag('name', 'twitter:image', ogImage);
 
     // 6. Structured JSON-LD Schema
-    updateJsonLd(jsonLd);
+    updateJsonLd(activeSchema);
 
     // Cleanup JSON-LD on unmount if specific to this view
     return () => {
@@ -131,6 +149,7 @@ export default function SEO({
     ogImage,
     ogType,
     twitterCard,
+    activeSchema,
     jsonLd,
     currentLang
   ]);

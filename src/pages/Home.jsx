@@ -18,15 +18,20 @@ export default function Home() {
         '@type': 'Organization',
         '@id': 'https://01group.online/#organization',
         'name': '01Group',
-        'url': 'https://01group.online/',
+        'alternateName': [
+          'زيرو وان جروب',
+          '01Group Digital Agency'
+        ],
+        'url': 'https://01group.online',
         'logo': 'https://01group.online/logo.svg',
         'image': 'https://01group.online/og-image-v2.png',
         'description': lang === 'ar'
-          ? 'شريكك التقني لتصميم وتطوير مواقع ومنصات ويب سريعة، وحلول سحابية ذكية متفصلة لنمو أعمالك ومبيعاتك.'
-          : 'Partner with 01Group for cutting-edge websites, high-performance web platforms, and smart cloud architectures engineered for rapid growth.',
+          ? 'وكالة زيرو وان جروب (01Group Digital Agency) شريكك التقني لتصميم وتطوير مواقع ومنصات وتطبيقات عبر 01Group Online لنمو مبيعاتك.'
+          : '01Group Digital Agency (01Group Online) crafts high-converting websites, web applications, and enterprise cloud solutions.',
         'email': 'zeronegroup0@gmail.com',
         'telephone': '+201023412285',
         'sameAs': [
+          'https://instagram.com/01Group',
           'https://wa.me/201023412285'
         ],
         'contactPoint': {
@@ -39,8 +44,9 @@ export default function Home() {
       {
         '@type': 'WebSite',
         '@id': 'https://01group.online/#website',
-        'url': 'https://01group.online/',
-        'name': '01Group',
+        'url': 'https://01group.online',
+        'name': '01Group Digital Agency',
+        'alternateName': 'زيرو وان جروب',
         'publisher': {
           '@id': 'https://01group.online/#organization'
         },

@@ -7,16 +7,16 @@
 export const translations = {
   ar: {
     // SEO Meta
-    seoHomeTitle: '01Group | للحلول الرقمية وتطوير المواقع والتطبيقات',
-    seoHomeDesc: 'شريكك التقني لتصميم وتطوير مواقع ومنصات ويب سريعة، وحلول سحابية ذكية متفصلة لنمو أعمالك ومبيعاتك.',
-    seoAboutTitle: 'عن المجموعة | 01Group للحلول الرقمية وهندسة البرمجيات',
-    seoAboutDesc: 'تعرف على فريق ومهندسي 01Group وقيمنا الأساسية في تقديم حلول برمجية متطورة تساند نمو الشركات ورواد الأعمال.',
-    seoServicesTitle: 'خدماتنا الرقمية | برمجة وتطوير المواقع والتطبيقات - 01Group',
-    seoServicesDesc: 'حلول رقمية متكاملة تشمل برمجة وتطوير مواقع الويب، تطبيقات الهواتف الذكية، وتصميم UI/UX وبنية السيرفرات السحابية.',
-    seoPortfolioTitle: 'سابقة أعمالنا | مشاريع برمجية وتطبيقات ويب تفاعلية - 01Group',
-    seoPortfolioDesc: 'استكشف معرض مشاريع وقصص نجاح عملاء 01Group في قطاعات التجارة الإلكترونية، المطاعم، والمنظومات الإدارية.',
-    seoContactTitle: 'تواصل معنا | ابدأ مشروعك الرقمي القادم - 01Group',
-    seoContactDesc: 'تواصل مع فريق 01Group اليوم عبر واتساب أو الهاتف لمناقشة فكرة مشروعك والحصول على استشارة برمجية وعرض سعر مخصص.',
+    seoHomeTitle: 'زيرو وان جروب | وكالة تصميم وتطوير المواقع والحلول البرمجية',
+    seoHomeDesc: 'وكالة زيرو وان جروب (01Group Digital Agency) شريكك التقني لتصميم وتطوير مواقع ومنصات وتطبيقات عبر 01Group Online لنمو مبيعاتك.',
+    seoAboutTitle: 'عن المجموعة | زيرو وان جروب (01Group Digital Agency)',
+    seoAboutDesc: 'تعرف على فريق ومهندسي زيرو وان جروب (01Group Online) وقيمنا الأساسية في تقديم حلول برمجية متطورة تساند نمو أعمالك.',
+    seoServicesTitle: 'خدماتنا الرقمية | 01Group Digital Agency لتطوير البرمجيات',
+    seoServicesDesc: 'خدمات وكالة زيرو وان جروب (01Group Online) تشمل برمجة وتطوير مواقع الويب، تطبيقات الهواتف الذكية، وتصميم UI/UX والسيرفرات.',
+    seoPortfolioTitle: 'سابقة أعمالنا | دراسات حالة ومشاريع 01Group Digital Agency',
+    seoPortfolioDesc: 'استكشف معرض مشاريع وقصص نجاح عملاء زيرو وان جروب (01Group Online) في قطاعات التجارة الإلكترونية، المطاعم، والمنظومات.',
+    seoContactTitle: 'تواصل معنا | وكالة زيرو وان جروب (01Group Digital Agency)',
+    seoContactDesc: 'تواصل مع فريق زيرو وان جروب (01Group Online) اليوم عبر واتساب أو الهاتف للحصول على استشارة برمجية وعرض سعر مخصص.',
 
     // Navigation
     navHome: 'الرئيسية',
@@ -128,16 +128,16 @@ export const translations = {
 
   en: {
     // SEO Meta
-    seoHomeTitle: '01Group | Scalable Web & Mobile Digital Solutions',
-    seoHomeDesc: 'Partner with 01Group for cutting-edge websites, high-performance web platforms, and smart cloud architectures engineered for rapid growth.',
-    seoAboutTitle: 'About Us | 01Group Digital Innovation & Engineering Team',
-    seoAboutDesc: 'Learn about 01Group\'s journey, engineering culture, and commitment to building impactful software that scales businesses.',
-    seoServicesTitle: 'Our Services | Full-Stack Web, Mobile & Cloud Engineering - 01Group',
-    seoServicesDesc: 'Comprehensive digital services: modern web platforms, iOS & Android apps, UI/UX design, and resilient cloud infrastructure.',
-    seoPortfolioTitle: 'Our Portfolio | Digital Products & Web Application Case Studies - 01Group',
-    seoPortfolioDesc: 'Browse our portfolio of high-impact web apps, e-commerce platforms, and interactive dashboards engineered for rapid scale.',
-    seoContactTitle: 'Contact Us | Start Your Digital Project - 01Group',
-    seoContactDesc: 'Get in touch with 01Group via WhatsApp, phone, or email to discuss your next web or mobile app development project.',
+    seoHomeTitle: '01Group | Digital Agency & Custom Web Solutions',
+    seoHomeDesc: '01Group Digital Agency (01Group Online) crafts high-performance websites, custom web apps, and digital solutions engineered for rapid business growth.',
+    seoAboutTitle: 'About Us | 01Group Digital Agency & Engineering Team',
+    seoAboutDesc: 'Discover 01Group Digital Agency (01Group Online): our journey, engineering standards, and mission to build scalable digital products.',
+    seoServicesTitle: 'Our Services | 01Group Digital Agency - Custom Web & App Solutions',
+    seoServicesDesc: '01Group Digital Agency (01Group Online) provides cutting-edge web development, mobile apps, UI/UX design, and cloud architecture.',
+    seoPortfolioTitle: 'Our Portfolio | 01Group Digital Agency Case Studies',
+    seoPortfolioDesc: 'Explore featured projects delivered by 01Group Digital Agency (01Group Online) across e-commerce, enterprise platforms, and digital products.',
+    seoContactTitle: 'Contact Us | 01Group Digital Agency (01Group Online)',
+    seoContactDesc: 'Get in touch with 01Group Digital Agency (01Group Online) via WhatsApp, phone, or email to start your next custom digital project.',
 
     navHome: 'Home',
     navAbout: 'About',
